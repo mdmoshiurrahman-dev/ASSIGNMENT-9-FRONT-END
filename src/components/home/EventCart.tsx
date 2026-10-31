@@ -2,7 +2,8 @@ import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { EventItem } from "./UpcomingEvents";
+import { EventItem } from "../upcoming-events/UpcomingEvents";
+
 
 const EventCart = ({ event }: { event: EventItem }) => {
   return (
