@@ -122,9 +122,9 @@ export default function Navbar() {
               </button>
             </Link>
             {/* Create Event Button */}
-            <button className="inline-flex items-center gap-1.5 bg-[#0a392c] hover:bg-[#0f4d3d] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm transition-all hover:shadow-md hover:scale-[1.02] active:scale-[0.98]">
-              Login
-            </button>
+            <Link href={'/signin'} className="inline-flex items-center gap-1.5 bg-[#0a392c] hover:bg-[#0f4d3d] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm transition-all hover:shadow-md hover:scale-[1.02] active:scale-[0.98]">
+              SignIn
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}

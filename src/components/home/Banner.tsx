@@ -98,8 +98,6 @@ const stats = [
 export default function Banner() {
   return (
     <section className="relative w-full overflow-hidden pt-4 pb-12 lg:pt-8 lg:pb-16">
-      {/* Background Organic Shapes */}
-      {/* Top right organic wavy wave */}
       <div className="absolute top-0 right-0 w-[55%] h-[260px] pointer-events-none z-10 hidden md:block">
         <svg
           viewBox="0 0 700 260"
@@ -118,14 +116,11 @@ export default function Banner() {
       {/* Main Content Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[500px] lg:min-h-[560px]">
-          {/* Left Column: Typography, CTAs, Social Proof */}
           <div className="lg:col-span-6 flex flex-col justify-center pt-2 lg:pt-6">
-            {/* Main Headline */}
             <h1 className="text-5xl sm:text-6xl lg:text-[70px] font-extrabold tracking-tight text-zinc-900 leading-[1.08]">
               Small Acts.
               <span className="relative block text-[#15803d] mt-1 sm:mt-2">
                 Big Change.
-                {/* Hand-drawn Green Doodle Above 'Big' */}
                 <svg
                   className="absolute -top-7 sm:-top-9 left-2 sm:left-4 w-12 sm:w-16 h-8 text-[#16a34a] pointer-events-none"
                   viewBox="0 0 50 35"
@@ -137,7 +132,6 @@ export default function Banner() {
                   <path d="M10 28C18 18 26 10 35 4" />
                   <path d="M22 30C28 21 34 13 42 7" />
                 </svg>
-                {/* Hand-drawn Green Underline Beneath 'Change.' */}
                 <svg
                   className="absolute -bottom-3 sm:-bottom-4 left-0 w-[240px] sm:w-[320px] h-4 text-[#16a34a]/80 pointer-events-none"
                   viewBox="0 0 320 16"
@@ -160,14 +154,13 @@ export default function Banner() {
             {/* Call to Actions */}
             <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
               {/* Primary: Explore Events */}
-              <Link
-                href="/events"
+              <span
                 className="inline-flex items-center gap-2.5 bg-[#0a382c] hover:bg-[#0f4d3d] text-white px-7 py-3.5 rounded-full font-semibold text-base shadow-sm hover:shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Calendar className="w-5 h-5 text-emerald-300 stroke-[2]" />
-                <span>Explore Events</span>
+                <Link href={'/events'}>Explore Events</Link>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-              </Link>
+              </span>
 
               {/* Secondary: Create an Event */}
               <Link
