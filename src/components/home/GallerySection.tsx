@@ -1,75 +1,11 @@
 import Link from "next/link";
 import GalleryCart from "./GalleryCart";
 import { ArrowRight } from "lucide-react";
+import { GalleryImageArray } from "@/types/galleryItems";
 
-export interface GalleryItem {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  isVideo?: boolean;
-}
-
-const galleryItems: GalleryItem[] = [
-  {
-    id: "1",
-    title: "Tree Planting Initiative",
-    description: "Volunteers planting saplings to make our city greener.",
-    image: "/images/events/tree-plantation.jpg",
-  },
-  {
-    id: "2",
-    title: "Community Relief Distribution",
-    description:
-      "Distributing essential supplies and grain to families in need.",
-    image: "/images/events/food-drive.jpg",
-  },
-  {
-    id: "3",
-    title: "Smiles for Tomorrow",
-    description:
-      "Bringing joy and education to children in local neighborhoods.",
-    image: "/images/events/child-education.jpg",
-  },
-  {
-    id: "4",
-    title: "Youth Clean & Serve Drive",
-    description:
-      "A community working side by side for a cleaner, kinder future.",
-    image: "/images/events/city-cleanup.jpg",
-    isVideo: true,
-  },
-    {
-    id: "5",
-    title: "Tree Planting Initiative",
-    description: "Volunteers planting saplings to make our city greener.",
-    image: "/images/events/tree-plantation.jpg",
-  },
-  {
-    id: "6",
-    title: "Community Relief Distribution",
-    description:
-      "Distributing essential supplies and grain to families in need.",
-    image: "/images/events/food-drive.jpg",
-  },
-  {
-    id: "7",
-    title: "Smiles for Tomorrow",
-    description:
-      "Bringing joy and education to children in local neighborhoods.",
-    image: "/images/events/child-education.jpg",
-  },
-  {
-    id: "8",
-    title: "Youth Clean & Serve Drive",
-    description:
-      "A community working side by side for a cleaner, kinder future.",
-    image: "/images/events/city-cleanup.jpg",
-    isVideo: true,
-  },
-];
-
-export default function GallerySection() {
+export default async function GallerySection() {
+  const res = await fetch(`${process.env.BASE_URL}/old-gallery-image`);
+  const galleryItems: GalleryImageArray = await res.json();
   return (
     <section className="relative w-full py-12 md:py-16 bg-[#f7f6f0] border-t border-zinc-200/50 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,7 +46,7 @@ export default function GallerySection() {
           <div className="lg:col-span-8 xl:col-span-8.5 w-full">
             <div className="grid grid-cols-2 sm:grid-cols-4 border-12 border-white">
               {galleryItems.map((item) => (
-               <GalleryCart key={item.id} item ={item}/>
+                <GalleryCart key={item._id} item={item} />
               ))}
             </div>
           </div>

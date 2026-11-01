@@ -1,73 +1,5 @@
-"use client";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IEventRes } from "@/types/event";
 import EventCart from "../home/EventCart";
-
-
-export interface EventItem {
-  id: string;
-  title: string;
-  category: string;
-  location: string;
-  date: string;
-  joined: string;
-  image: string;
-  link: string;
-}
-
-const events: EventItem[] = [
-  {
-    id: "1",
-    title: "Tree Plantation Drive",
-    category: "Plantation",
-    location: "Dhanmondi, Dhaka",
-    date: "Dec 10, 2026",
-    joined: "120 Joined",
-    image: "/images/events/tree-plantation.jpg",
-    link: "/events/tree-plantation",
-  },
-  {
-    id: "2",
-    title: "Blanket Distribution",
-    category: "Donation",
-    location: "Mohammadpur, Dhaka",
-    date: "Dec 14, 2026",
-    joined: "85 Joined",
-    image: "/images/events/blanket-distribution.jpg",
-    link: "/events/blanket-distribution",
-  },
-  {
-    id: "3",
-    title: "Clean Our City",
-    category: "Cleanup",
-    location: "Mirpur 10, Dhaka",
-    date: "Dec 20, 2026",
-    joined: "67 Joined",
-    image: "/images/events/city-cleanup.jpg",
-    link: "/events/clean-our-city",
-  },
-  {
-    id: "4",
-    title: "Community Food Relief",
-    category: "Food Drive",
-    location: "Uttara, Dhaka",
-    date: "Dec 24, 2026",
-    joined: "142 Joined",
-    image: "/images/events/food-drive.jpg",
-    link: "/events/food-relief",
-  },
-  {
-    id: "5",
-    title: "Children Learning Camp",
-    category: "Education",
-    location: "Gulshan, Dhaka",
-    date: "Jan 05, 2027",
-    joined: "95 Joined",
-    image: "/images/events/child-education.jpg",
-    link: "/events/children-learning",
-  },
-];
-
 const illustrator = () => {
   return (
     <div className=" sm:-left-6 w-[280px] sm:w-[320px] h-[160px] pointer-events-none opacity-45 select-none z-0">
@@ -187,7 +119,9 @@ const illustrator = () => {
   );
 };
 
-export default function UpcomingEvents() {
+export default async function UpcomingEvents() {
+  const res = await fetch('http://localhost:5000/recent-upcoming-events');
+  const events:IEventRes = await res.json();
   return (
     <section className="relative w-full py-12 md:py-16 bg-[#f7f6f0] overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -198,9 +132,9 @@ export default function UpcomingEvents() {
             {/* Header Content */}
             <div>
               {/* Pill Badge */}
-              <div className="inline-block">
+              <div className="inline-block mb-1">
                 <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-[#d8f993] text-[#13341b] tracking-wide shadow-sm">
-                  Upcoming Events
+                 Resent Upcoming Events
                 </span>
               </div>
 
@@ -223,7 +157,7 @@ export default function UpcomingEvents() {
           <div className="lg:col-span-8 xl:col-span-8.5 w-full">
             <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-4">
               {events.map((event) => (
-                <EventCart key={event.id} event={event} />
+                <EventCart key={event._id} event={event} />
               ))}
             </div>
           </div>
