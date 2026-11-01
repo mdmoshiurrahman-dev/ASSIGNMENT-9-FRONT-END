@@ -11,6 +11,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "../ui/toast";
+import { Spinner } from "../ui/spinner";
 const categories = [
   "Plantation",
   "Donation",
@@ -22,12 +24,12 @@ const categories = [
   "Community Service",
 ];
 const CreateEventFrom = () => {
-  //   const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const event_create_date = new Date().toISOString();
-    // setLoading(true);
+    setLoading(true);
     const fromData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(fromData.entries());
     const finalData = { ...data, event_create_date };
@@ -38,7 +40,13 @@ const CreateEventFrom = () => {
       },
       body: JSON.stringify(finalData),
     });
-    console.log(res);
+    if (res) {
+      setLoading(false);
+      toast.add({
+        type: "success",
+        description: "Event has been created.",
+      });
+    }
   };
   return (
     <section className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 pb-16 z-10">
@@ -133,7 +141,7 @@ const CreateEventFrom = () => {
               <div className="relative">
                 <Calendar className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
-                 // desible past date select opt
+                  // desible past date select opt
                   onFocus={(e) => {
                     e.target.min = new Date().toISOString().split("T")[0];
                   }}
@@ -225,8 +233,14 @@ const CreateEventFrom = () => {
               //   disabled={loading}
               className="w-full sm:w-auto rounded-full px-8 h-11 bg-[#0b3829] hover:bg-[#07261c] text-white font-semibold shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
             >
-              {/* {loading ? "Publishing..." : "Publish Event"} */}
-              Publish Event
+              {loading ? (
+                <span>
+                  <Spinner className="inline mr-1" />
+                  Publishing...
+                </span>
+              ) : (
+                "Publish Event"
+              )}
             </Button>
           </div>
         </form>

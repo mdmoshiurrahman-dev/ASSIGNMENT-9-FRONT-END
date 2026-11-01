@@ -5,6 +5,11 @@ import Link from "next/link";
 import React from "react";
 
 const EventCart = ({ event }: { event: IEvent }) => {
+  const eventDate = new Date(event.event_date).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
   return (
     <div className="group bg-white rounded-[26px] p-3 sm:p-3.5 border border-black/[0.04] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_36px_-6px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1">
       <div>
@@ -44,7 +49,8 @@ const EventCart = ({ event }: { event: IEvent }) => {
             {/* Date */}
             <div className="flex items-center gap-2 text-zinc-700 text-xs sm:text-sm">
               <Calendar className="w-4 h-4 text-[#16a34a] shrink-0 stroke-[2.2]" />
-              <span className="font-medium">{event.event_create_date}</span>
+
+              <span className="font-medium">{eventDate}</span>
             </div>
           </div>
         </div>

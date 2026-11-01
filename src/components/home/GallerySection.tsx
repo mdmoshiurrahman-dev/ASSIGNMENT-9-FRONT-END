@@ -4,7 +4,9 @@ import { ArrowRight } from "lucide-react";
 import { GalleryImageArray } from "@/types/galleryItems";
 
 export default async function GallerySection() {
-  const res = await fetch(`${process.env.BASE_URL}/old-gallery-image`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/old-gallery-image`,
+  );
   const galleryItems: GalleryImageArray = await res.json();
   return (
     <section className="relative w-full py-12 md:py-16 bg-[#f7f6f0] border-t border-zinc-200/50 overflow-hidden">
