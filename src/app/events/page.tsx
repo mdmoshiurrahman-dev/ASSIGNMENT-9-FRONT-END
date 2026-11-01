@@ -1,9 +1,10 @@
-import React from 'react'
+import EventBanner from "@/components/events/EventBanner";
+import EventFilter from "@/components/events/EventFilter";
 
-const page = () => {
-  return (
-    <div>page</div>
+export default function EventsPage() {
+  return (<>
+  <EventBanner />
+    <EventFilter/>
+  </>
   )
 }
-
-export default page

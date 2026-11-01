@@ -1,9 +1,9 @@
-import Navbar from "@/components/Navbar";
-import Banner from "@/components/Banner";
-import UpcomingEvents from "@/components/UpcomingEvents";
-import HowItWorks from "@/components/HowItWorks";
-import GallerySection from "@/components/GallerySection";
-import Newsletter from "@/components/Newsletter";
+import Navbar from "@/components/nav/Navbar";
+import Banner from "@/components/home/Banner";
+import HowItWorks from "@/components/home/HowItWorks";
+import GallerySection from "@/components/home/GallerySection";
+import Newsletter from "@/components/home/Newsletter";
+import UpcomingEvents from "@/components/upcoming-events/UpcomingEvents";
 
 export default function Home() {
   return (

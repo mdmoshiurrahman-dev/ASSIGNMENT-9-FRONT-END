@@ -108,7 +108,7 @@ export default function GallerySection() {
 
           {/* Right Column: 4 Photos Grid */}
           <div className="lg:col-span-8 xl:col-span-8.5 w-full">
-            <div className="grid grid-cols-2 sm:grid-cols-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 border-12 border-white">
               {galleryItems.map((item) => (
                <GalleryCart key={item.id} item ={item}/>
               ))}

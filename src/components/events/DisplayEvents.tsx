@@ -1,0 +1,15 @@
+import React from 'react'
+import { EventItem } from '../upcoming-events/UpcomingEvents'
+import EventCart from '../home/EventCart'
+
+const DisplayEvents = ({events}:{events:EventItem[]}) => {
+  return (
+    <div className='grid grid-cols-1 p-4 md:grid-cols-2 gap-4 mb-5 md:mb-8 lg:mb-12  lg:grid-cols-3 xl:grid-cols-4 max-w-7xl mx-auto'>
+  {
+    events.map(e=> <EventCart key={e.id} event={e}/>)
+  }
+    </div>
+  )
+}
+
+export default DisplayEvents
