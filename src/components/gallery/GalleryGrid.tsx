@@ -1,6 +1,7 @@
 import { Gallery } from "@/types/gallaryImage";
 import Cart from "./Cart";
 import { Suspense } from "react";
+import GallerySkeleton from "./skelon/GallerySkeleton";
 
  async function GalleryGrid() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/gallery-image`);
@@ -19,7 +20,7 @@ import { Suspense } from "react";
 
 const GalleryGridMain = ()=>{
  return (
-  <Suspense fallback = {'Loading...'}>
+  <Suspense fallback = {<GallerySkeleton/>}>
 
     <GalleryGrid/>
   </Suspense>

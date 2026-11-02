@@ -1,6 +1,7 @@
 import { IEventRes } from "@/types/event";
 import EventFilterSub from "./EventFilterSub";
 import { Suspense } from "react";
+import EventGridSkeleton from "./skelon/EventGridSkeleton ";
 
 export interface FilterCategory {
   id: string;
@@ -16,7 +17,7 @@ async function EventFilter() {
 
 const EventFilterMain = () => {
   return (
-    <Suspense fallback={"Loading..."}>
+    <Suspense fallback={<EventGridSkeleton/>}>
       <EventFilter />;
     </Suspense>
   );

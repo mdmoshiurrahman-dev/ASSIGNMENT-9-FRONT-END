@@ -4,6 +4,8 @@ import "./globals.css";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/nav/Navbar";
 import { Toaster } from "@/components/ui/toast";
+import { Suspense } from "react";
+import NavbarSkeleton from "@/components/nav/skealon/NavbarSkeleton";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -22,9 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${openSans.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col justify-between">
-        <nav>
-          <Navbar />
-        </nav>
+        <Suspense fallback={<NavbarSkeleton />}>
+          <nav>
+            <Navbar />
+          </nav>
+        </Suspense>
+
         <main className="flex-1">{children}</main>
         <Toaster />
         <Footer />
