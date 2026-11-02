@@ -3,15 +3,22 @@ import { IEvent } from "@/types/event";
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, MapPin } from "lucide-react";
+import { notFound } from "next/navigation";
 const RelatedUpcomingEvents = async ({
   eventCategory,
 }: {
-  eventCategory: string;
+  eventCategory: { category: string; _id: string };
 }) => {
   const relatedEventRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/related/${eventCategory}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/related/${eventCategory.category}`,
   );
   const relatedEvents: IEvent[] = await relatedEventRes.json();
+  const related: IEvent[] = relatedEvents.filter(
+    (f) => f._id !== eventCategory._id,
+  );
+   if (relatedEvents.length === 0) {
+    notFound();
+  }
   return (
     <aside className="w-full">
       <div className="bg-white rounded-2xl border border-zinc-200/80 p-4 sm:p-5 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]">
@@ -20,7 +27,7 @@ const RelatedUpcomingEvents = async ({
         </h2>
 
         <div className="space-y-3">
-          {relatedEvents.map((item) => {
+          {related.map((item) => {
             return (
               <Link
                 key={item._id}

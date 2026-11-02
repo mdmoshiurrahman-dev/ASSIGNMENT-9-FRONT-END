@@ -17,6 +17,7 @@ const page = async ({ params }: PageProps) => {
     console.log("fetch failed");
   }
   const event: IEvent = await res.json();
+  const eventCategory = { category: event.category, _id: event._id };
   return (
     <div className="min-h-screen bg-[#fafafa]/80 py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,7 +41,7 @@ const page = async ({ params }: PageProps) => {
 
           {/* Right Column: Related Upcoming Events */}
           <div className="lg:col-span-4 sticky top-6">
-            <RelatedUpcomingEvents eventCategory={event.category} />
+            <RelatedUpcomingEvents eventCategory={eventCategory} />
           </div>
         </div>
       </div>
