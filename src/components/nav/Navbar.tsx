@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Plus, Menu, X, Sun, Sparkles } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { ChevronDown, Menu, X, Sun, Sparkles } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { signOut, useSession } from "@/lib/auth-client";
+import { toast } from "../ui/toast";
 
 interface NavItem {
   label: string;
@@ -19,8 +21,27 @@ const navItems: NavItem[] = [
 ];
 
 export default function Navbar() {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathName = usePathname();
+  const session = useSession();
+  const handelSignOut = async () => {
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          toast.add({
+            type: "success",
+            description: "You have been safely logged out.",
+          });
+          if (pathName === "/") {
+            router.push("/");
+          } else {
+            router.push("/signin");
+          }
+        },
+      },
+    });
+  };
   return (
     <header className="relative w-full z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,7 +91,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-1.5 lg:gap-2">
             {navItems.map((item) => (
               <Link
@@ -86,8 +106,6 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
-
-          {/* Right Action Items */}
           <div className="hidden sm:flex items-center gap-3 lg:gap-4">
             {/* Theme / Sparkle Toggle */}
             <button
@@ -122,9 +140,23 @@ export default function Navbar() {
               </button>
             </Link>
             {/* Create Event Button */}
-            <Link href={'/signin'} className="inline-flex items-center gap-1.5 bg-[#0a392c] hover:bg-[#0f4d3d] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm transition-all hover:shadow-md hover:scale-[1.02] active:scale-[0.98]">
-              SignIn
-            </Link>
+            {session.isPending ? (
+              <div className="py-5 px-11 bg-gray-300 rounded-full"></div>
+            ) : session.data?.user ? (
+              <button
+                onClick={handelSignOut}
+                className="inline-flex items-center gap-1.5 bg-red-500  text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm transition-all hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
+              >
+                LogOut
+              </button>
+            ) : (
+              <Link
+                href={"/signin"}
+                className="inline-flex items-center gap-1.5 bg-[#0a392c] hover:bg-[#0f4d3d] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm transition-all hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
+              >
+                SignIn
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
