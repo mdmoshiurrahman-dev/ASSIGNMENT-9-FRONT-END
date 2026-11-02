@@ -59,7 +59,7 @@ const EventCart = ({ event }: { event: IEvent }) => {
       {/* Card Bottom Link */}
       <div className="px-1.5 pt-3 border-t border-zinc-100/80">
         <Link
-          href={"#"}
+          href={`/event-details/${event._id}`}
           className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-zinc-900 group-hover:text-emerald-800 transition-colors"
         >
           <span>View Event</span>

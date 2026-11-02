@@ -1,10 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/toast";
 import { signUp } from "@/lib/auth-client";
@@ -105,7 +101,13 @@ export default function SignupPage() {
           </button>
         </div>
         <p className="text-[13px] text-center text-[#189346] mt-3">
-          <Link href={"/signin"}>Already have an account? SignIn </Link>
+          <Link href={"/signin"}> </Link>
+        </p>
+        <p className="text-[13px] text-center mt-5">
+          Don&apos;t have account?
+          <span className="text-green-600 hover:underline">
+            <Link href={"/signin"}> SignIn </Link>
+          </span>
         </p>
       </div>
     </section>
