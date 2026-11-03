@@ -1,12 +1,16 @@
-export type IEventRes = IEvent[]
-export interface IEvent {
+export type IEvents = Event[];
+export interface Event {
   _id: string;
+  creator_name: string;
+  creator_email: string;
+  creator_image: string;
   event_title: string;
   category: string;
   location: string;
-  event_date: string; // Can be Date if you parse it later
-  time: string;
+  event_date: string; // 
+  time: string; 
   event_cover_image: string;
   event_description: string;
-  event_create_date: string; // Can be Date if you parse it later
+  event_create_date: string; 
 }
+

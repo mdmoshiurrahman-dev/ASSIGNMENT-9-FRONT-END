@@ -11,13 +11,13 @@ import { toast } from "../ui/toast";
 interface NavItem {
   label: string;
   href: string;
-  active?: boolean;
 }
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Upcoming Events", href: "/events" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Profile", href: "/profile" },
 ];
 
 export default function Navbar() {

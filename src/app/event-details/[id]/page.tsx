@@ -1,9 +1,9 @@
-import { IEvent } from "@/types/event";
 import React from "react";
 import EventMainDetails from "@/components/event-details/EventMainDetails";
 import RelatedUpcomingEvents from "@/components/event-details/RelatedUpcomingEvents";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Event } from "@/types/event";
 interface PageProps {
   params: Promise<{ id: string }>;
 }
@@ -16,7 +16,7 @@ const page = async ({ params }: PageProps) => {
   if (!res.ok) {
     console.log("fetch failed");
   }
-  const event: IEvent = await res.json();
+  const event: Event = await res.json();
   const eventCategory = { category: event.category, _id: event._id };
   return (
     <div className="min-h-screen bg-[#fafafa]/80 py-8 sm:py-12">

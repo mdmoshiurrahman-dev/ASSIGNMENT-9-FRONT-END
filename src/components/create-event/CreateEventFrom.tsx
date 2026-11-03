@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { toast } from "../ui/toast";
 import { Spinner } from "../ui/spinner";
+import { useSession } from "@/lib/auth-client";
 const categories = [
   "Plantation",
   "Donation",
@@ -25,14 +26,21 @@ const categories = [
 ];
 const CreateEventFrom = () => {
   const [loading, setLoading] = useState(false);
-
+  const session = useSession();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const event_create_date = new Date().toISOString();
+    const otherData = {
+      event_create_date: event_create_date,
+      creator_name: session.data?.user.name,
+      creator_email: session.data?.user.email,
+      creator_image: session.data?.user.image,
+    };
+
     setLoading(true);
     const fromData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(fromData.entries());
-    const finalData = { ...data, event_create_date };
+    const finalData = { ...data, ...otherData };
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/create-event`, {
       method: "POST",
       headers: {

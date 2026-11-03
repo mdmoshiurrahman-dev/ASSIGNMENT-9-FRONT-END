@@ -1,9 +1,9 @@
 import React from "react";
-import { IEvent } from "@/types/event";
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, MapPin } from "lucide-react";
 import { notFound } from "next/navigation";
+import { IEvents } from "@/types/event";
 const RelatedUpcomingEvents = async ({
   eventCategory,
 }: {
@@ -12,11 +12,11 @@ const RelatedUpcomingEvents = async ({
   const relatedEventRes = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/related/${eventCategory.category}`,
   );
-  const relatedEvents: IEvent[] = await relatedEventRes.json();
-  const related: IEvent[] = relatedEvents.filter(
+  const relatedEvents: IEvents = await relatedEventRes.json();
+  const related: IEvents = relatedEvents.filter(
     (f) => f._id !== eventCategory._id,
   );
-   if (relatedEvents.length === 0) {
+  if (relatedEvents.length === 0) {
     notFound();
   }
   return (

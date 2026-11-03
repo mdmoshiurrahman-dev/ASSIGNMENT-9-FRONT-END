@@ -1,4 +1,4 @@
-import { IEventRes } from "@/types/event";
+import { IEvents } from "@/types/event";
 import EventCart from "../home/EventCart";
 const illustrator = () => {
   return (
@@ -120,8 +120,8 @@ const illustrator = () => {
 };
 
 export default async function UpcomingEvents() {
-  const res = await fetch('http://localhost:5000/recent-upcoming-events');
-  const events:IEventRes = await res.json();
+  const res = await fetch("http://localhost:5000/recent-upcoming-events");
+  const events: IEvents = await res.json();
   return (
     <section className="relative w-full py-12 md:py-16 bg-[#f7f6f0] overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,7 +134,7 @@ export default async function UpcomingEvents() {
               {/* Pill Badge */}
               <div className="inline-block mb-1">
                 <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-[#d8f993] text-[#13341b] tracking-wide shadow-sm">
-                 Resent Upcoming Events
+                  Resent Upcoming Events
                 </span>
               </div>
 
