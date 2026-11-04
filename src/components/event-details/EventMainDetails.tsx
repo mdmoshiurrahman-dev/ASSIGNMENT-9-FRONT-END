@@ -4,8 +4,21 @@ import { Calendar, Clock, MapPin } from "lucide-react";
 import JoinEventCard from "./JoinEventCard";
 import { Event } from "@/types/event";
 import { IoPerson } from "react-icons/io5";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { EventJoin, EventJoinNeeds } from "@/types/EventJoinRes";
 
-const EventMainDetails = ({ event }: { event: Event }) => {
+const EventMainDetails = async ({ event }: { event: Event }) => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const res = await fetch(
+    `http://localhost:5000/get-join-event/${session?.user.email}`,
+  );
+  const joinUserData: EventJoin = await res.json();
+
+  const data: EventJoinNeeds = { ...joinUserData, event_id: event._id };
+
   return (
     <div className="w-full space-y-6">
       {/* Event Cover Image with Category Badge */}
@@ -59,7 +72,7 @@ const EventMainDetails = ({ event }: { event: Event }) => {
           <div className="mt-6 border-b border-zinc-200/90" />
         </div>
         <div className="md:flex justify-center items-center">
-          <JoinEventCard />
+          <JoinEventCard data={data} />
         </div>
       </div>
       <div className="pt-2 space-y-4">

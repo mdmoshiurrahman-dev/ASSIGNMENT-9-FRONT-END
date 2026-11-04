@@ -1,4 +1,6 @@
 export type IEvents = Event[];
+export type IEvent = Event;
+export type IEventRes = Event[];
 export interface Event {
   _id: string;
   creator_name: string;

@@ -7,6 +7,7 @@ import { ChevronDown, Menu, X, Sun, Sparkles } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "@/lib/auth-client";
 import { toast } from "../ui/toast";
+import { IoPerson } from "react-icons/io5";
 
 interface NavItem {
   label: string;
@@ -128,18 +129,23 @@ export default function Navbar() {
                 className="flex items-center gap-1.5 p-1 rounded-full hover:bg-black/5 transition-colors"
                 aria-label="User Account"
               >
-                <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-emerald-500/30 shadow-xs bg-emerald-100">
-                  <Image
-                    src="/images/avatars/user.jpg"
-                    alt="User Avatar"
-                    width={32}
-                    height={32}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative flex justify-center items-center w-8 h-8 rounded-full overflow-hidden border-2 border-emerald-500/30 shadow-xs bg-emerald-100">
+                  {session.data?.user.image ? (
+                    <Image
+                      src={session.data?.user.image}
+                      alt="User Avatar"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    (
+                      <IoPerson className="size-8" />
+                    )
+                  )}
                 </div>
               </button>
             </Link>
-            {/* Create Event Button */}
             {session.isPending ? (
               <div className="py-5 px-11 bg-gray-300 rounded-full"></div>
             ) : session.data?.user ? (
