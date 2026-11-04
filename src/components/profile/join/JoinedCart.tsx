@@ -1,16 +1,39 @@
+import { toast } from "@/components/ui/toast";
+import { useSession } from "@/lib/auth-client";
 import { Event } from "@/types/event";
 import { Clock, MapPin, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { IoPerson } from "react-icons/io5";
 
 const JoinedCart = ({ event }: { event: Event }) => {
+  const route = useRouter();
   const eventDate = new Date(event.event_date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
+  const session = useSession();
+
+  const deleteJoin = async () => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/delete-joined-event/${session.data?.user.email}/${event._id}`,
+      {
+        method: "DELETE",
+      },
+    );
+
+    const result = await res.json();
+    if (result.modifiedCount > 0) {
+      toast.add({
+        type: "success",
+        description: "Removed Successfully!",
+      });
+      route.refresh();
+    }
+  };
 
   return (
     <div
@@ -100,6 +123,7 @@ const JoinedCart = ({ event }: { event: Event }) => {
         </Link>
 
         <button
+          onClick={deleteJoin}
           type="button"
           className="w-full py-2 px-4 bg-[#fdf2f2] hover:bg-[#fee2e2] text-[#dc2626] border border-[#fecaca]/70 text-xs sm:text-sm font-semibold rounded-xl flex items-center justify-center gap-1.5 transition-colors active:scale-[0.99] cursor-pointer disabled:opacity-60"
         >

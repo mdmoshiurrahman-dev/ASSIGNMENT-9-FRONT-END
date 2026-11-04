@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { Suspense } from "react";
 import ProfileSkeleton from "@/components/profile/skeleton/ProfileSkeleton";
-import { IEventRes, IEvents } from "@/types/event";
+import { IEventRes } from "@/types/event";
 import JoinedEvents from "../../components/profile/join/JoinedEvents";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 async function ProfileContent() {
@@ -17,6 +17,7 @@ async function ProfileContent() {
     `${apiUrl}/get-created-events/${session?.user.email}`,
     { cache: "no-store" },
   );
+
   const createdEventData: IEventRes = await res.json();
 
   const joinedDataRes = await fetch(
@@ -26,7 +27,7 @@ async function ProfileContent() {
 
   return (
     <>
-      <ProfileCard event={createdEventData} />
+      <ProfileCard />
       <Tabs defaultValue="create" className="w-full">
         <TabsList variant={"line"} className={"container mx-auto"}>
           <TabsTrigger value="create" className={"text-xl font-bold"}>

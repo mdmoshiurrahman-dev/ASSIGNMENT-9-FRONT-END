@@ -1,35 +1,14 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { CalendarDays, Pencil, Users } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
-import { toast } from "@/components/ui/toast";
 import { IoPerson } from "react-icons/io5";
-import { IEventRes } from "@/types/event";
-const ProfileCard = ({ event }: { event: IEventRes }) => {
+import { EditProfile } from "./EditProfile";
+const ProfileCard = () => {
   const session = useSession();
   const user = session.data?.user;
-  const stats = [
-    {
-      label: "Events Created",
-      value: event?.length ?? 0,
-      icon: <CalendarDays className="w-5 h-5" strokeWidth={2.2} />,
-    },
-    {
-      label: "Events Joined",
-      value: event.length || 0,
-      icon: <Users className="w-5 h-5" strokeWidth={2.2} />,
-    },
-  ];
   const name = user?.name;
   const avatar = user?.image || "";
-  const handleEditProfile = () => {
-    toast.add({
-      type: "info",
-      description: "Profile editing is coming soon.",
-    });
-  };
-
   return (
     <section className="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
       {/* Profile Hero */}
@@ -98,37 +77,9 @@ const ProfileCard = ({ event }: { event: IEventRes }) => {
                   : "N/A"}
               </span>
             </div>
-
-            <button
-              type="button"
-              onClick={handleEditProfile}
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-800/80 bg-white/80 px-5 py-2.5 text-sm font-medium text-zinc-800 transition-all hover:bg-white hover:shadow-sm active:scale-[0.98]"
-            >
-              <Pencil className="w-4 h-4" strokeWidth={2.2} />
-              Edit Profile
-            </button>
+            <EditProfile />
           </div>
         </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="flex items-center gap-4 rounded-2xl border border-zinc-200/70 bg-white p-4 sm:p-5 shadow-xs"
-          >
-            <div className="shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-[#eef7dc] text-[#4d7c0f]">
-              {stat.icon}
-            </div>
-            <div>
-              <p className="text-sm text-zinc-500">{stat.label}</p>
-              <p className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
-                {stat.value}
-              </p>
-            </div>
-          </div>
-        ))}
       </div>
     </section>
   );
