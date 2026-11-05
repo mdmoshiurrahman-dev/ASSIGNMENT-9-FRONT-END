@@ -9,6 +9,12 @@ import { signOut, useSession } from "@/lib/auth-client";
 import { toast } from "../ui/toast";
 import { IoPerson } from "react-icons/io5";
 import ThemeToggle from "@/app/ThemeToggle";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "../ui/hover-card";
+import { Button } from "../ui/button";
 
 interface NavItem {
   label: string;
@@ -89,7 +95,8 @@ export default function Navbar() {
               </svg>
             </div>
             <span className="text-2xl dark:text-[#F3F5EF] font-bold tracking-tight text-zinc-900 flex items-center">
-              Social<span className="text-zinc-900 dark:text-[#F3F5EF]">Serve</span>
+              Social
+              <span className="text-zinc-900 dark:text-[#F3F5EF]">Serve</span>
             </span>
           </Link>
 
@@ -109,31 +116,45 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="hidden sm:flex items-center gap-3 lg:gap-4">
-            {/* Theme / Sparkle Toggle */}
-           <ThemeToggle/>
+            <ThemeToggle />
 
             {/* User Profile */}
-            <Link href={"/profile"}>
-              <button
-                type="button"
-                className="flex items-center gap-1.5 p-1 rounded-full hover:bg-black/5 transition-colors"
-                aria-label="User Account"
-              >
-                <div className="relative flex justify-center items-center w-8 h-8 rounded-full overflow-hidden border-2 border-emerald-500/30 shadow-xs bg-emerald-100">
-                  {session.data?.user.image ? (
-                    <Image
-                      src={session.data?.user.image}
-                      alt="User Avatar"
-                      width={32}
-                      height={32}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <IoPerson className="size-8" />
-                  )}
+            <HoverCard>
+              <HoverCardTrigger>
+                <button
+                  type="button"
+                  className="flex cursor-pointer items-center gap-1.5 p-1 rounded-full hover:bg-black/5 transition-colors"
+                  aria-label="User Account"
+                >
+                  <div className="relative flex justify-center items-center w-8 h-8 rounded-full overflow-hidden border-2 border-emerald-500/30 shadow-xs bg-emerald-100">
+                    {session.data?.user.image ? (
+                      <Image
+                        src={session.data?.user.image}
+                        alt="User Avatar"
+                        width={32}
+                        height={32}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <IoPerson className="size-8" />
+                    )}
+                  </div>
+                </button>
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <div className="flex flex-col gap-2">
+                  <div>
+                    <h2 className="font-bold">{session.data?.user.name}</h2>
+                    <p className="text-[14px]">{session.data?.user.email}</p>
+                  </div>
+                  <div className="flex justify-end">
+                    <Link href={"/profile"}>
+                      <Button className={"cursor-pointer"}>View profile</Button>
+                    </Link>
+                  </div>
                 </div>
-              </button>
-            </Link>
+              </HoverCardContent>
+            </HoverCard>
             {session.isPending ? (
               <div className="py-5 px-11 bg-gray-300 rounded-full"></div>
             ) : session.data?.user ? (
