@@ -194,16 +194,16 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-white/95 backdrop-blur-md border-b border-zinc-200 px-4 pt-3 pb-6 space-y-3 shadow-lg">
+        <div className="sm:hidden dark:bg-[#19251c] bg-white/95 backdrop-blur-md border-b border-zinc-200 px-4 pt-3 pb-6 space-y-3 shadow-lg">
           <nav className="flex flex-col space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`px-4 py-2 rounded-xl text-base font-medium ${
+                className={`px-4 py-2 rounded-xl dark:text-[#F3F5EF] text-base font-medium ${
                   pathName === item.href
-                    ? "bg-[#dff3e3] text-zinc-900 font-semibold"
+                    ? "bg-[#dff3e3] text-zinc-900 dark:text-black font-semibold"
                     : "text-zinc-700 hover:bg-zinc-100"
                 }`}
               >
@@ -214,29 +214,34 @@ export default function Navbar() {
           <div className="pt-2 border-t border-zinc-100 flex flex-col gap-3">
             <div className="flex items-center justify-between px-2">
               <div className="flex items-center gap-2">
-                <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-400">
-                  <Image
-                    src="/images/avatars/user.jpg"
-                    alt="User Avatar"
-                    width={32}
-                    height={32}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative  w-8 h-8 rounded-full overflow-hidden border border-emerald-400">
+                  {session.data?.user.image ? (
+                    <Image
+                      src={session.data?.user.image}
+                      alt="User Avatar"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex justify-center items-center">
+                      <IoPerson className="size-8" />
+                    </div>
+                  )}
                 </div>
-                <span className="text-sm font-medium text-zinc-800">
-                  Profile
+                <span className="text-sm font-medium dark:text-[#F3F5EF] text-zinc-800">
+                  {session.data?.user.name}
                 </span>
               </div>
-              <div className="flex items-center gap-1 text-amber-600">
-                <Sun className="w-5 h-5 fill-amber-400" />
-              </div>
+              <ThemeToggle />
             </div>
-            <button
+            <Link
+              href={"/signin"}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-center gap-2 bg-[#0a392c] text-white py-2.5 rounded-full text-sm font-semibold shadow-sm"
             >
               Login
-            </button>
+            </Link>
           </div>
         </div>
       )}
