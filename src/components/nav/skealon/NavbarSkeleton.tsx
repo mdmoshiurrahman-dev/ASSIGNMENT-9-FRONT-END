@@ -2,7 +2,7 @@ import React from "react";
 
 const NavbarSkeleton = () => {
   return (
-    <header className="relative w-full z-40 bg-white">
+    <header className="relative w-full z-40 bg-white dark:bg-[#19251c]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 animate-pulse">
           {/* Logo Skeleton */}

@@ -1,6 +1,6 @@
 export default function GalleryBanner() {
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-r from-[#fbfdf7] via-[#f3f9eb] to-[#e4f3d4] border-b border-[#e1ebd2]">
+    <section className="relative w-full  overflow-hidden bg-gradient-to-r from-[#fbfdf7] via-[#f3f9eb] to-[#e4f3d4]  border-b border-[#e1ebd2]">
       {/* Decorative Bottom-Left Leaf Vector */}
       <div className="absolute left-0 bottom-0 pointer-events-none select-none z-10">
         <svg
@@ -32,9 +32,9 @@ export default function GalleryBanner() {
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-10 sm:py-12 md:py-14 lg:py-16">
+      <div className="relative z-10 max-w-[1440px] dark:bg-[#101812] mx-auto px-4 sm:px-6 lg:px-12 py-10 sm:py-12 md:py-14 lg:py-16">
         <div className="max-w-xl lg:max-w-2xl space-y-4 sm:space-y-5">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-[#09261a] tracking-tight leading-[1.12]">
+          <h1 className="text-3xl dark:text-white sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-[#09261a] tracking-tight leading-[1.12]">
             Moment of {' '}
             <span className="relative  inline-block text-[#15803d]">
               Kindness
@@ -55,7 +55,7 @@ export default function GalleryBanner() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-zinc-600 text-sm sm:text-base md:text-[17px] font-normal leading-relaxed max-w-lg">
+          <p className="text-zinc-600 dark:text-[#B5C0B5] text-sm sm:text-base md:text-[17px] font-normal leading-relaxed max-w-lg">
             A collection of our community service, activities and meaningful
             moments
           </p>

@@ -58,14 +58,14 @@ const CreateEventFrom = () => {
   };
   return (
     <section className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 pb-16 z-10">
-      <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.08)] border border-zinc-100">
+      <div className="bg-white dark:bg-[#1B271E] rounded-3xl transition duration-300 p-6 sm:p-10 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.08)] border border-zinc-100">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="border-b border-zinc-100 pb-4">
-            <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight flex items-center gap-2">
+            <h2 className="text-xl sm:text-2xl font-bold dark:text-[#F3F5EF] text-zinc-900 tracking-tight flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-emerald-600" />
               <span>Event Information</span>
             </h2>
-            <p className="text-xs sm:text-sm text-zinc-500 mt-1">
+            <p className="text-xs dark:text-[#B5C0B5] sm:text-sm text-zinc-500 mt-1">
               Fill in the necessary information below to organize your social
               impact event.
             </p>
@@ -76,7 +76,7 @@ const CreateEventFrom = () => {
             <div className="md:col-span-2 space-y-1.5">
               <label
                 htmlFor="title"
-                className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                className="block dark:text-[#F3F5EF] text-xs sm:text-sm font-semibold text-zinc-800"
               >
                 Event Title <span className="text-rose-500">*</span>
               </label>
@@ -87,7 +87,7 @@ const CreateEventFrom = () => {
                   name="event_title"
                   required
                   placeholder="e.g. Winter Blanket Distribution Drive"
-                  className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                  className="w-full dark:bg-[#1B271E] dark:text-[#B5C0B5] bg-zinc-50/80 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                 />
               </div>
             </div>
@@ -96,7 +96,7 @@ const CreateEventFrom = () => {
             <div className="space-y-1.5">
               <label
                 htmlFor="category"
-                className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                className="block dark:text-[#F3F5EF] text-xs sm:text-sm font-semibold text-zinc-800"
               >
                 Category <span className="text-rose-500">*</span>
               </label>
@@ -106,7 +106,7 @@ const CreateEventFrom = () => {
                   id="category"
                   name="category"
                   required
-                  className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all cursor-pointer"
+                  className="w-full dark:bg-[#1B271E] dark:text-[#B5C0B5] bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all cursor-pointer"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>
@@ -121,7 +121,7 @@ const CreateEventFrom = () => {
             <div className="space-y-1.5">
               <label
                 htmlFor="location"
-                className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                className="block dark:text-[#F3F5EF] text-xs sm:text-sm font-semibold text-zinc-800"
               >
                 Location / Area <span className="text-rose-500">*</span>
               </label>
@@ -133,7 +133,7 @@ const CreateEventFrom = () => {
                   name="location"
                   required
                   placeholder="e.g. Dhanmondi, Dhaka"
-                  className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                  className="w-full dark:bg-[#1B271E] dark:text-[#B5C0B5] bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                 />
               </div>
             </div>
@@ -142,7 +142,7 @@ const CreateEventFrom = () => {
             <div className="space-y-1.5">
               <label
                 htmlFor="date"
-                className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                className="block dark:text-[#F3F5EF] text-xs sm:text-sm font-semibold text-zinc-800"
               >
                 Event Date <span className="text-rose-500">*</span>
               </label>
@@ -157,7 +157,7 @@ const CreateEventFrom = () => {
                   id="date"
                   name="event_date"
                   required
-                  className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                  className="w-full dark:bg-[#1B271E] dark:text-[#B5C0B5] bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                 />
               </div>
             </div>
@@ -166,7 +166,7 @@ const CreateEventFrom = () => {
             <div className="space-y-1.5">
               <label
                 htmlFor="time"
-                className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                className="block dark:text-[#F3F5EF] text-xs sm:text-sm font-semibold text-zinc-800"
               >
                 Time <span className="text-rose-500">*</span>
               </label>
@@ -177,7 +177,7 @@ const CreateEventFrom = () => {
                   id="time"
                   name="time"
                   required
-                  className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                  className="w-full dark:bg-[#1B271E] dark:text-[#B5C0B5] bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                 />
               </div>
             </div>
@@ -186,7 +186,7 @@ const CreateEventFrom = () => {
             <div className="space-y-1.5">
               <label
                 htmlFor="imageUrl"
-                className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                className="block text-xs dark:text-[#F3F5EF] sm:text-sm font-semibold text-zinc-800"
               >
                 Event Cover Image URL
               </label>
@@ -197,7 +197,7 @@ const CreateEventFrom = () => {
                   id="imageUrl"
                   name="event_cover_image"
                   placeholder="https://example.com/event-image.jpg"
-                  className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                  className="w-full dark:bg-[#1B271E] dark:text-[#B5C0B5] bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                 />
               </div>
             </div>
@@ -206,7 +206,7 @@ const CreateEventFrom = () => {
             <div className="md:col-span-2 space-y-1.5">
               <label
                 htmlFor="description"
-                className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                className="block text-xs dark:text-[#F3F5EF] sm:text-sm font-semibold text-zinc-800"
               >
                 Event Description <span className="text-rose-500">*</span>
               </label>
@@ -217,7 +217,7 @@ const CreateEventFrom = () => {
                   required
                   rows={4}
                   placeholder="Provide details about the event, objectives, what volunteers should bring, and meeting point..."
-                  className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl p-4 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all resize-y"
+                  className="w-full dark:bg-[#1B271E] dark:text-[#B5C0B5] bg-zinc-50/80 border border-zinc-200 rounded-xl p-4 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all resize-y"
                 />
               </div>
             </div>
@@ -229,7 +229,7 @@ const CreateEventFrom = () => {
               <Button
                 type="button"
                 variant="outline"
-                className="w-full sm:w-auto rounded-full px-6 h-11 border-zinc-200 text-zinc-700 hover:bg-zinc-100"
+                className="w-full sm:w-auto dark:bg-[#B5C0B5] dark:text-black dark:hover:text-white rounded-full px-6 h-11 border-zinc-200 text-zinc-700 hover:bg-zinc-100"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Home

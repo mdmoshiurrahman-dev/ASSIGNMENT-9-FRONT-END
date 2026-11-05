@@ -10,7 +10,7 @@ const CreateEventBanner = () => {
               {/* Left Column: Badge, Title & Subtitle */}
               <div className="space-y-3 sm:space-y-4 max-w-2xl text-center md:text-left">
                 {/* Pill Badge */}
-                <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-zinc-800 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full shadow-xs">
+                <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm  text-zinc-800 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full shadow-xs">
                   <Calendar className="w-4 h-4 text-emerald-700 stroke-[2.2]" />
                   <span>Join & Make a Difference</span>
                 </div>

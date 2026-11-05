@@ -4,7 +4,7 @@ const EventGridSkeleton = () => {
       {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
         <div
           key={item}
-          className="overflow-hidden rounded-2xl bg-white shadow-sm animate-pulse"
+          className="overflow-hidden rounded-2xl dark:bg-[#1B271E] bg-white shadow-sm animate-pulse"
         >
           {/* Event Cover */}
           <div className="h-48 w-full bg-zinc-200" />

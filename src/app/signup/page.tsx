@@ -42,7 +42,7 @@ export default function SignupPage() {
   };
   return (
     <section className="px-5 md:mx-0">
-      <div className="max-w-150 bg-[#F7F6EF]  mx-auto my-8 md:my-12 lg:my-16 border border-gray-200 rounded-xl p-6 md:p-8 lg:p-12 ">
+      <div className="max-w-150 bg-[#F7F6EF] dark:bg-[#1B271E] mx-auto my-8 md:my-12 lg:my-16 border border-gray-200 rounded-xl p-6 md:p-8 lg:p-12 ">
         <form onSubmit={handelSignUp}>
           <FieldGroup>
             <Field>

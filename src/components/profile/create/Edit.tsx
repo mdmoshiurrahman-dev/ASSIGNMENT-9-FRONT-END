@@ -63,13 +63,13 @@ const Edit = ({ event }: { event: Event }) => {
   return (
     <div>
       <Dialog>
-        <DialogTrigger className="w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-[#1f4e30] hover:bg-[#dcf0d6] transition-colors cursor-pointer">
-          <Pencil className="w-3.5 h-3.5 text-[#2d6a4f] shrink-0" /> Edit Event
+        <DialogTrigger className="w-full text-left flex items-center dark:text-[#F3F5EF] gap-2.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-[#1f4e30] hover:bg-[#dcf0d6] dark:hover:bg-black transition-colors cursor-pointer">
+          <Pencil className="w-3.5 h-3.5 text-[#2d6a4f] dark:text-[#F3F5EF] shrink-0" /> Edit Event
         </DialogTrigger>
         <DialogContent className="max-w-lg sm:max-w-2xl max-h-[85vh] p-0 flex flex-col overflow-hidden">
           <DialogHeader className="p-6 pb-2">
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-emerald-600" />
+            <DialogTitle className="text-xl dark:text-[#B5C0B5] sm:text-2xl font-bold text-zinc-900 tracking-tight flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-emerald-600 " />
               <span>Event Information</span>
             </DialogTitle>
             <DialogDescription>
@@ -85,7 +85,7 @@ const Edit = ({ event }: { event: Event }) => {
                 <div className="md:col-span-2 space-y-1.5">
                   <label
                     htmlFor="title"
-                    className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                    className="block text-xs dark:text-white sm:text-sm font-semibold text-zinc-800"
                   >
                     Event Title <span className="text-rose-500">*</span>
                   </label>
@@ -97,7 +97,7 @@ const Edit = ({ event }: { event: Event }) => {
                       name="event_title"
                       required
                       placeholder="e.g. Winter Blanket Distribution Drive"
-                      className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                      className="w-full dark:bg-[#101812] dark:text-white bg-zinc-50/80 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                     />
                   </div>
                 </div>
@@ -106,7 +106,7 @@ const Edit = ({ event }: { event: Event }) => {
                 <div className="space-y-1.5">
                   <label
                     htmlFor="category"
-                    className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                    className="block text-xs dark:text-white sm:text-sm font-semibold text-zinc-800"
                   >
                     Category <span className="text-rose-500">*</span>
                   </label>
@@ -117,7 +117,7 @@ const Edit = ({ event }: { event: Event }) => {
                       id="category"
                       name="category"
                       required
-                      className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all cursor-pointer"
+                      className="w-full dark:text-white bg-zinc-50/80 border dark:bg-[#101812] border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all cursor-pointer"
                     >
                       {categories.map((cat) => (
                         <option key={cat} value={cat}>
@@ -132,7 +132,7 @@ const Edit = ({ event }: { event: Event }) => {
                 <div className="space-y-1.5">
                   <label
                     htmlFor="location"
-                    className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                    className="block dark:bg-[#101812] dark:text-white text-xs sm:text-sm font-semibold text-zinc-800"
                   >
                     Location / Area <span className="text-rose-500">*</span>
                   </label>
@@ -145,7 +145,7 @@ const Edit = ({ event }: { event: Event }) => {
                       name="location"
                       required
                       placeholder="e.g. Dhanmondi, Dhaka"
-                      className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                      className="w-full dark:bg-[#101812] dark:text-white bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                     />
                   </div>
                 </div>
@@ -154,7 +154,7 @@ const Edit = ({ event }: { event: Event }) => {
                 <div className="space-y-1.5">
                   <label
                     htmlFor="date"
-                    className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                    className="block dark:text-white text-xs sm:text-sm font-semibold text-zinc-800"
                   >
                     Event Date <span className="text-rose-500">*</span>
                   </label>
@@ -169,7 +169,7 @@ const Edit = ({ event }: { event: Event }) => {
                       id="date"
                       name="event_date"
                       required
-                      className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                      className="w-full dark:bg-[#101812] dark:text-white bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                     />
                   </div>
                 </div>
@@ -178,7 +178,7 @@ const Edit = ({ event }: { event: Event }) => {
                 <div className="space-y-1.5">
                   <label
                     htmlFor="time"
-                    className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                    className="block dark:text-white text-xs sm:text-sm font-semibold text-zinc-800"
                   >
                     Time <span className="text-rose-500">*</span>
                   </label>
@@ -190,7 +190,7 @@ const Edit = ({ event }: { event: Event }) => {
                       id="time"
                       name="time"
                       required
-                      className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                      className="w-full dark:bg-[#101812] dark:text-white bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                     />
                   </div>
                 </div>
@@ -199,7 +199,7 @@ const Edit = ({ event }: { event: Event }) => {
                 <div className="space-y-1.5 md:col-span-2">
                   <label
                     htmlFor="imageUrl"
-                    className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                    className="block dark:text-white text-xs sm:text-sm font-semibold text-zinc-800"
                   >
                     Event Cover Image URL
                   </label>
@@ -211,7 +211,7 @@ const Edit = ({ event }: { event: Event }) => {
                       id="imageUrl"
                       name="event_cover_image"
                       placeholder="https://example.com"
-                      className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
+                      className="w-full dark:bg-[#101812] dark:text-white bg-zinc-50/80 border border-zinc-200 rounded-xl pl-10 pr-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all"
                     />
                   </div>
                 </div>
@@ -220,7 +220,7 @@ const Edit = ({ event }: { event: Event }) => {
               <div className="md:col-span-2 space-y-1.5">
                 <label
                   htmlFor="description"
-                  className="block text-xs sm:text-sm font-semibold text-zinc-800"
+                  className="block dark:text-white text-xs sm:text-sm font-semibold text-zinc-800"
                 >
                   Event Description <span className="text-rose-500">*</span>
                 </label>
@@ -232,7 +232,7 @@ const Edit = ({ event }: { event: Event }) => {
                     required
                     rows={4}
                     placeholder="Provide details about the event, objectives, what volunteers should bring, and meeting point..."
-                    className="w-full bg-zinc-50/80 border border-zinc-200 rounded-xl p-4 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all resize-y"
+                    className="w-full dark:bg-[#101812] dark:text-white bg-zinc-50/80 border border-zinc-200 rounded-xl p-4 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 transition-all resize-y"
                   />
                 </div>
               </div>

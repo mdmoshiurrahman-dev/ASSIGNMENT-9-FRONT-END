@@ -1,6 +1,6 @@
 const UpcomingEventsSkeleton = () => {
   return (
-    <section className="relative w-full py-12 md:py-16 bg-[#f7f6f0] overflow-hidden">
+    <section className="relative w-full py-12 md:py-16 bg-[#f7f6f0] dark:bg-[#101812] overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Hero Skeleton */}
@@ -31,7 +31,7 @@ const UpcomingEventsSkeleton = () => {
               {[1, 2, 3, 4, 5, 6].map((item) => (
                 <div
                   key={item}
-                  className="overflow-hidden rounded-2xl bg-white shadow-sm"
+                  className="overflow-hidden rounded-2xl bg-white dark:bg-[#1B271E] shadow-sm"
                 >
                   <div className="animate-pulse">
                     {/* Event Cover Image */}

@@ -8,6 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "@/lib/auth-client";
 import { toast } from "../ui/toast";
 import { IoPerson } from "react-icons/io5";
+import ThemeToggle from "@/app/ThemeToggle";
 
 interface NavItem {
   label: string;
@@ -44,7 +45,7 @@ export default function Navbar() {
     });
   };
   return (
-    <header className="relative w-full z-40">
+    <header className="relative w-full z-40 transition duration-300 dark:bg-[#19251c]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -87,8 +88,8 @@ export default function Navbar() {
                 </defs>
               </svg>
             </div>
-            <span className="text-2xl font-bold tracking-tight text-zinc-900 flex items-center">
-              Social<span className="text-zinc-900">Serve</span>
+            <span className="text-2xl dark:text-[#F3F5EF] font-bold tracking-tight text-zinc-900 flex items-center">
+              Social<span className="text-zinc-900 dark:text-[#F3F5EF]">Serve</span>
             </span>
           </Link>
 
@@ -97,9 +98,9 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`text-sm font-medium transition-all px-4 py-1.5 rounded-full ${
+                className={`text-sm dark:text-[#F3F5EF] font-medium transition-all px-4 py-1.5 rounded-full ${
                   pathName === item.href
-                    ? "bg-[#dff3e3] text-zinc-900 font-semibold shadow-xs"
+                    ? "bg-[#dff3e3] text-zinc-900 dark:text-black font-semibold shadow-xs"
                     : "text-zinc-700 hover:text-zinc-950 hover:bg-black/5"
                 }`}
               >
@@ -109,21 +110,10 @@ export default function Navbar() {
           </nav>
           <div className="hidden sm:flex items-center gap-3 lg:gap-4">
             {/* Theme / Sparkle Toggle */}
-            <button
-              type="button"
-              className="flex items-center gap-1 p-1.5 text-zinc-600 hover:text-zinc-900 rounded-full hover:bg-black/5 transition-colors"
-              title="Toggle Theme"
-              aria-label="Toggle Theme"
-            >
-              <div className="relative flex items-center justify-center">
-                <Sun className="w-5 h-5 text-amber-500 fill-amber-400" />
-                <Sparkles className="w-2.5 h-2.5 text-amber-400 absolute -top-1 -right-1" />
-              </div>
-              <ChevronDown className="w-3.5 h-3.5 text-zinc-500" />
-            </button>
+           <ThemeToggle/>
 
             {/* User Profile */}
-            <Link href={"#"}>
+            <Link href={"/profile"}>
               <button
                 type="button"
                 className="flex items-center gap-1.5 p-1 rounded-full hover:bg-black/5 transition-colors"
@@ -139,9 +129,7 @@ export default function Navbar() {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    (
-                      <IoPerson className="size-8" />
-                    )
+                    <IoPerson className="size-8" />
                   )}
                 </div>
               </button>

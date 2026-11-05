@@ -46,7 +46,7 @@ export function EditProfile() {
         render={
           <Button
             variant="outline"
-            className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-zinc-800/80 bg-white/80 px-5 py-2.5 text-sm font-medium text-zinc-800 transition-all hover:bg-white hover:shadow-sm active:scale-[0.98]"
+            className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-zinc-800/80 bg-white/80 px-5 py-2.5 text-sm font-medium text-zinc-800 transition-all hover:shadow-sm hover:text-black active:scale-[0.98]"
           >
             <Pencil className="w-4 h-4" strokeWidth={2.2} />
             Edit Profile

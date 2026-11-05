@@ -19,13 +19,13 @@ const page = async ({ params }: PageProps) => {
   const event: Event = await res.json();
   const eventCategory = { category: event.category, _id: event._id };
   return (
-    <div className="min-h-screen bg-[#fafafa]/80 py-8 sm:py-12">
+    <div className="min-h-screen dark:bg-[#101812] transition duration-300 bg-[#fafafa]/80 py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Navigation Breadcrumb / Back Link */}
         <div className="mb-6">
           <Link
             href="/events"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-zinc-500 hover:text-emerald-700 transition-colors"
+            className="inline-flex items-center dark:text-[#F3F5EF] gap-2 text-xs sm:text-sm font-medium text-zinc-500 hover:text-emerald-700 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Events</span>

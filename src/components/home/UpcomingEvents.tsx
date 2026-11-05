@@ -2,7 +2,7 @@ import { IEvents } from "@/types/event";
 import EventCart from "../home/EventCart";
 const illustrator = () => {
   return (
-    <div className=" sm:-left-6 w-[280px] sm:w-[320px] h-[160px] pointer-events-none opacity-45 select-none z-0">
+    <div className="sm:-left-6 w-[280px] sm:w-[320px] h-[160px] pointer-events-none opacity-45 select-none z-0">
       <svg
         viewBox="0 0 320 160"
         fill="none"
@@ -123,8 +123,8 @@ export default async function UpcomingEvents() {
   const res = await fetch("http://localhost:5000/recent-upcoming-events");
   const events: IEvents = await res.json();
   return (
-    <section className="relative w-full py-12 md:py-16 bg-[#f7f6f0] overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full py-12 md:py-16 dark:bg-[#101812] bg-[#f7f6f0] overflow-hidden">
+      <div className="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Section Layout: Left Column & Right Carousel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-start">
           {/* Left Hero / Header Column */}
@@ -139,13 +139,13 @@ export default async function UpcomingEvents() {
               </div>
 
               {/* Title */}
-              <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-zinc-900 tracking-tight leading-[1.12]">
+              <h2 className="text-3xl sm:text-4xl dark:text-[#F3F5EF]  lg:text-[44px] font-extrabold text-zinc-900 tracking-tight leading-[1.12]">
                 Be a Part of <br />
                 Something Good
               </h2>
 
               {/* Description */}
-              <p className="text-zinc-600 text-sm sm:text-base leading-relaxed max-w-sm">
+              <p className="text-zinc-600 dark:text-[#B5C0B5] text-sm sm:text-base leading-relaxed max-w-sm">
                 Discover and join the latest community service events in your
                 area.
               </p>

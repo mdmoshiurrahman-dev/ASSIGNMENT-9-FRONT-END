@@ -38,8 +38,9 @@ export default function SigninPage() {
     }
   };
   return (
-    <section className="px-5 md:mx-0">
-      <div className="max-w-[600px] bg-[#F7F6EF]  mx-auto my-8 md:my-12 lg:my-16 border border-gray-200 rounded-xl p-6 md:p-8 lg:p-12 ">
+    <section className="dark:bg-[#101812]">
+    <div className="px-5  md:mx-0">
+        <div className="max-w-[600px] dark:bg-[#1B271E] bg-[#F7F6EF]  mx-auto my-8 md:my-12 lg:my-16 border border-gray-200 rounded-xl p-6 md:p-8 lg:p-12 ">
         <form onSubmit={handelSignIn}>
           <FieldGroup>
             <Field>
@@ -99,6 +100,7 @@ export default function SigninPage() {
           </span>
         </p>
       </div>
+    </div>
     </section>
   );
 }

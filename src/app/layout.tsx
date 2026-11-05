@@ -6,7 +6,7 @@ import Navbar from "@/components/nav/Navbar";
 import { Toaster } from "@/components/ui/toast";
 import { Suspense } from "react";
 import NavbarSkeleton from "@/components/nav/skealon/NavbarSkeleton";
-
+import { ThemeProvider } from "next-themes";
 const openSans = Open_Sans({
   subsets: ["latin"],
 });
@@ -22,17 +22,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${openSans.className} h-full antialiased`}>
+    <html
+      suppressHydrationWarning
+      lang="en"
+      className={`${openSans.className} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col justify-between">
-        <Suspense fallback={<NavbarSkeleton />}>
-          <nav>
-            <Navbar />
-          </nav>
-        </Suspense>
+        <ThemeProvider attribute={"class"} enableSystem defaultTheme="system">
+          <Suspense fallback={<NavbarSkeleton />}>
+            <nav>
+              <Navbar />
+            </nav>
+          </Suspense>
 
-        <main className="flex-1">{children}</main>
-        <Toaster />
-        <Footer />
+          <main className="flex-1 dark:bg-[#101812]">{children}</main>
+          <Toaster />
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

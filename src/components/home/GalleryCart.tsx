@@ -4,7 +4,7 @@ import React from "react";
 
 const GalleryCart = ({ item }: { item: GalleryImage }) => {
   return (
-    <div className="bg-white p-3">
+    <div className="bg-white dark:bg-[] p-3">
       <div className="group relative aspect-square w-full   overflow-hidden bg-zinc-200 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1">
         <Image
           src={item.event_cover_image}

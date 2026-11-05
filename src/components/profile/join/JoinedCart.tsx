@@ -38,7 +38,7 @@ const JoinedCart = ({ event }: { event: Event }) => {
   return (
     <div
       key={event._id}
-      className="group bg-white rounded-3xl p-3.5 sm:p-4 border border-zinc-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+      className="group bg-white dark:bg-[#1B271E] rounded-3xl p-3.5 sm:p-4 border border-zinc-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
     >
       <div>
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-zinc-100">
@@ -52,25 +52,25 @@ const JoinedCart = ({ event }: { event: Event }) => {
         </div>
         <h3
           title={event.event_title}
-          className="text-base sm:text-[17px] font-bold text-zinc-900 mt-3.5 tracking-tight truncate"
+          className="text-base dark:text-[#F3F5EF] sm:text-[17px] font-bold text-zinc-900 mt-3.5 tracking-tight truncate"
         >
           {event.event_title}
         </h3>
         <div className="mt-1.5">
           <span className="inline-block bg-[#e7f7cf] text-[#3d6e15] text-xs font-semibold px-3 py-0.5 rounded-full">
-            {event.category || "Category"}
+            {event.category}
           </span>
         </div>
 
         {/* Date & Time */}
-        <div className="flex items-center gap-2 text-xs font-medium text-zinc-700 mt-3">
-          <Clock className="w-3.5 h-3.5 text-zinc-900 shrink-0" />
+        <div className="flex items-center dark:text-[#B5C0B5] gap-2 text-xs font-medium text-zinc-700 mt-3">
+          <Clock className="w-3.5 h-3.5 text-zinc-900 shrink-0 dark:text-white" />
           <span className="truncate">{eventDate}</span>
         </div>
 
         {/* Location */}
-        <div className="flex items-center gap-2 text-xs font-medium text-zinc-700 mt-1.5">
-          <MapPin className="w-3.5 h-3.5 text-zinc-900 shrink-0" />
+        <div className="flex dark:text-[#B5C0B5] items-center gap-2 text-xs font-medium text-zinc-700 mt-1.5">
+          <MapPin className="w-3.5 h-3.5 dark:text-white text-zinc-900 shrink-0" />
           <span className="truncate">{event.location}</span>
         </div>
 
@@ -91,29 +91,18 @@ const JoinedCart = ({ event }: { event: Event }) => {
               )}
             </div>
             <div className="min-w-0">
-              <span className="text-[10px] font-bold text-zinc-900 leading-tight block">
+              <span className="text-[10px] dark:text-white font-bold text-zinc-900 leading-tight block">
                 Organizer by
               </span>
-              <span className="text-[10px] text-zinc-500 leading-tight block truncate max-w-[85px] sm:max-w-[100px]">
-                {event.creator_name || "Community Org"}
+              <span className="text-[10px] dark:text-[#B5C0B5] text-zinc-500 leading-tight block truncate max-w-[85px] sm:max-w-[100px]">
+                {event.creator_name }
               </span>
             </div>
           </div>
-
-          {/* Status Badge */}
-          <span
-            className={`text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0 ${
-              status === "Upcoming"
-                ? "bg-[#e6f8d0] text-[#3f6212]"
-                : "bg-[#dcfce7] text-[#15803d]"
-            }`}
-          >
-            {status}
-          </span>
         </div>
       </div>
 
-      {/* Action Buttons */}
+
       <div className="mt-4 space-y-2">
         <Link
           href={`/event-details/${event._id}`}
@@ -125,7 +114,7 @@ const JoinedCart = ({ event }: { event: Event }) => {
         <button
           onClick={deleteJoin}
           type="button"
-          className="w-full py-2 px-4 bg-[#fdf2f2] hover:bg-[#fee2e2] text-[#dc2626] border border-[#fecaca]/70 text-xs sm:text-sm font-semibold rounded-xl flex items-center justify-center gap-1.5 transition-colors active:scale-[0.99] cursor-pointer disabled:opacity-60"
+          className="w-full py-2 px-4 dark:bg-[#212020] dark:border-white bg-[#fdf2f2] hover:bg-[#fee2e2] text-[#dc2626] border border-[#fecaca]/70 text-xs sm:text-sm font-semibold rounded-xl flex items-center justify-center gap-1.5 transition-colors active:scale-[0.99] cursor-pointer disabled:opacity-60"
         >
           <span>Remove from Joined</span>
           <Trash2 className="w-3.5 h-3.5 text-[#dc2626] shrink-0" />

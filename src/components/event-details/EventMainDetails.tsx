@@ -20,12 +20,12 @@ const EventMainDetails = async ({ event }: { event: Event }) => {
   const data: EventJoinNeeds = { ...joinUserData, event_id: event._id };
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full  space-y-6">
       {/* Event Cover Image with Category Badge */}
-      <div className="relative w-full aspect-[16/9] sm:aspect-[21/10] md:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden bg-zinc-100 shadow-sm border border-zinc-200/70">
+      <div className="relative w-full aspect-[16/9]  sm:aspect-[21/10] md:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden bg-zinc-100 shadow-sm border border-zinc-200/70">
         <Image
-          src={event.event_cover_image || "/images/events/child-education.jpg"}
-          alt={event.event_title || "Event Cover Image"}
+          src={event.event_cover_image}
+          alt={event.event_title}
           fill
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 800px"
@@ -39,7 +39,7 @@ const EventMainDetails = async ({ event }: { event: Event }) => {
       </div>
       <div className="flex justify-between flex-col md:flex-row">
         <div className="pt-2">
-          <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">
+          <h2 className="text-xl sm:text-2xl dark:text-[#F3F5EF] font-bold text-zinc-900 tracking-tight">
             Host Details
           </h2>
 
@@ -61,10 +61,10 @@ const EventMainDetails = async ({ event }: { event: Event }) => {
               </div>
             </div>
             <div className="min-w-0">
-              <h3 className="text-base sm:text-lg font-bold text-zinc-900 leading-snug">
+              <h3 className="text-base sm:text-lg dark:text-[#F3F5EF] font-bold text-zinc-900 leading-snug">
                 {event.creator_name}
               </h3>
-              <p className="text-xs sm:text-sm text-zinc-500 font-normal">
+              <p className="text-xs sm:text-sm dark:text-[#B5C0B5] text-zinc-500 font-normal">
                 {event.creator_email}
               </p>
             </div>
@@ -76,7 +76,7 @@ const EventMainDetails = async ({ event }: { event: Event }) => {
         </div>
       </div>
       <div className="pt-2 space-y-4">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl dark:text-[#F3F5EF] font-extrabold text-zinc-900 tracking-tight">
           {event.event_title}
         </h1>
         <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-zinc-600">
@@ -96,7 +96,7 @@ const EventMainDetails = async ({ event }: { event: Event }) => {
           </div>
         </div>
 
-        <div className="prose prose-zinc max-w-none text-zinc-600 leading-relaxed text-sm sm:text-base pt-2">
+        <div className="prose dark:text-[#B5C0B5] prose-zinc max-w-none text-zinc-600 leading-relaxed text-sm sm:text-base pt-2">
           <p>{event.event_description}</p>
         </div>
       </div>

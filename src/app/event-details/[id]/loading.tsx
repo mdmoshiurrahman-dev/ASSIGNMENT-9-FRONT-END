@@ -2,7 +2,7 @@ import React from "react";
 
 const EventDetailsSkeleton = () => {
   return (
-    <div className="min-h-screen bg-[#fafafa]/80 py-8 sm:py-12">
+    <div className="min-h-screen dark:bg-[#101812] bg-[#fafafa]/80 py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Link */}
         <div className="mb-6 animate-pulse">
@@ -14,7 +14,7 @@ const EventDetailsSkeleton = () => {
           {/* Main Event Details */}
           <div className="lg:col-span-8 space-y-6 animate-pulse">
             {/* Cover Image */}
-            <div className="relative w-full aspect-[16/9] sm:aspect-[21/10] md:h-[420px] rounded-2xl sm:rounded-3xl bg-zinc-200" />
+            <div className="relative w-full  aspect-[16/9] sm:aspect-[21/10] md:h-[420px] rounded-2xl sm:rounded-3xl bg-zinc-200" />
 
             {/* Host Details + Join Card */}
             <div className="flex justify-between flex-col md:flex-row gap-6">

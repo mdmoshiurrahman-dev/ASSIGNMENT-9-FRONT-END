@@ -97,13 +97,13 @@ const stats = [
 
 export default function Banner() {
   return (
-    <section className="relative w-full overflow-hidden pt-4 pb-12 lg:pt-8 lg:pb-16">
+    <section className="relative dark:bg-[#101812] transition duration-300 w-full overflow-hidden pt-4 pb-12 lg:pt-8 lg:pb-16">
       <div className="absolute top-0 right-0 w-[55%] h-[260px] pointer-events-none z-10 hidden md:block">
         <svg
           viewBox="0 0 700 260"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover dark:hidden transition duration-500"
         >
           <path
             d="M0 0C120 40 280 80 420 50C560 20 640 0 700 0V260C620 220 500 240 380 200C240 150 100 210 0 260V0Z"
@@ -117,9 +117,9 @@ export default function Banner() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[500px] lg:min-h-[560px]">
           <div className="lg:col-span-6 flex flex-col justify-center pt-2 lg:pt-6">
-            <h1 className="text-5xl sm:text-6xl lg:text-[70px] font-extrabold tracking-tight text-zinc-900 leading-[1.08]">
+            <h1 className="text-5xl dark:text-[#F3F5EF] sm:text-6xl lg:text-[70px] font-extrabold tracking-tight text-zinc-900 leading-[1.08]">
               Small Acts.
-              <span className="relative block text-[#15803d] mt-1 sm:mt-2">
+              <span className="relative dark:text-[#F3F5EF] block text-[#15803d] mt-1 sm:mt-2">
                 Big Change.
                 <svg
                   className="absolute -top-7 sm:-top-9 left-2 sm:left-4 w-12 sm:w-16 h-8 text-[#16a34a] pointer-events-none"
@@ -146,7 +146,7 @@ export default function Banner() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-8 text-base sm:text-lg text-zinc-600 max-w-lg leading-relaxed font-normal">
+            <p className="mt-8 text-base dark:text-[#B5C0B5] sm:text-lg text-zinc-600 max-w-lg leading-relaxed font-normal">
               Join community events, help people, and build a kinder, stronger
               society together.
             </p>
@@ -155,7 +155,7 @@ export default function Banner() {
             <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
               {/* Primary: Explore Events */}
               <span
-                className="inline-flex items-center gap-2.5 bg-[#0a382c] hover:bg-[#0f4d3d] text-white px-7 py-3.5 rounded-full font-semibold text-base shadow-sm hover:shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2.5 bg-[#0a382c] dark:bg-[#174D38] dark:hover:bg-[#0a382c] hover:bg-[#0f4d3d] text-white px-7 py-3.5 rounded-full font-semibold text-base shadow-sm hover:shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Calendar className="w-5 h-5 text-emerald-300 stroke-[2]" />
                 <Link href={'/events'}>Explore Events</Link>
@@ -165,7 +165,7 @@ export default function Banner() {
               {/* Secondary: Create an Event */}
               <Link
                 href="/create-event"
-                className="inline-flex items-center gap-2 border-2 border-[#0a382c] text-[#0a382c] hover:bg-[#0a382c]/5 px-7 py-3.5 rounded-full font-semibold text-base transition-all hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2 dark:border-[#236e51] border-2 border-[#0a382c] text-[#0a382c] dark:text-[#236e51] hover:bg-[#0a382c]/5 px-7 py-3.5 rounded-full font-semibold text-base transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Plus className="w-5 h-5 stroke-[2.5]" />
                 <span>Create an Event</span>
@@ -190,11 +190,11 @@ export default function Banner() {
                   </div>
                 ))}
               </div>
-              <div className="text-sm font-medium text-zinc-800 leading-snug">
-                <span className="font-bold text-zinc-950">10K+</span> People are
+              <div className="text-sm dark:text-[#B5C0B5] font-medium text-zinc-800 leading-snug">
+                <span className="font-bold text-zinc-950 dark:text-white">10K+</span> People are
                 part
                 <br />
-                <span className="text-zinc-600 font-normal">
+                <span className="text-zinc-600 dark:text-[#B5C0B5] font-normal">
                   of our community
                 </span>
               </div>
@@ -262,15 +262,11 @@ export default function Banner() {
                 </svg>
               </div>
             </div>
-
-            {/* Right side large circular accent arc */}
             <div className="absolute -right-8 -bottom-10 w-44 h-44 rounded-full border-[18px] border-lime-400/40 pointer-events-none hidden sm:block -z-10" />
           </div>
         </div>
-
-        {/* Bottom Floating Stats Strip */}
-        <div className="mt-14 sm:mt-18 relative z-30">
-          <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-xl shadow-zinc-200/60 border border-zinc-100/90 py-6 px-6 sm:px-10">
+        <div className="mt-14 sm:mt-18 relative z-30 dark:bg-transparent ">
+          <div className="bg-white/95  backdrop-blur-md dark:bg-[#49935b]  rounded-2xl sm:rounded-3xl shadow-xl shadow-zinc-200/60 dark:shadow-none border border-zinc-100/90  py-6 px-6 sm:px-10">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {stats.map((stat, index) => (
                 <div
@@ -280,16 +276,16 @@ export default function Banner() {
                   }`}
                 >
                   {/* Green Icon Box */}
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-emerald-800">
+                  <div className="flex-shrink-0  w-12 h-12 rounded-xl flex items-center justify-center text-emerald-800">
                     {stat.icon}
                   </div>
 
                   {/* Stat text */}
                   <div>
-                    <div className="text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight">
+                    <div className="text-2xl dark:text-[#F3F5EF] sm:text-3xl font-extrabold text-zinc-900 tracking-tight">
                       {stat.value}
                     </div>
-                    <div className="text-xs sm:text-sm text-zinc-500 font-medium whitespace-nowrap mt-0.5">
+                    <div className="text-xs sm:text-sm dark:text-[#B5C0B5] text-zinc-500 font-medium whitespace-nowrap mt-0.5">
                       {stat.label}
                     </div>
                   </div>

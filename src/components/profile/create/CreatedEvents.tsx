@@ -14,7 +14,7 @@ export default function CreatedEvents({
       {/* Header section with '+ Create New Event' button */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-zinc-900 tracking-tight">
+          <h2 className="text-2xl dark:text-[#F3F5EF] sm:text-3xl lg:text-4xl font-extrabold text-zinc-900 tracking-tight">
             Events You&apos;ve Created
           </h2>
         </div>

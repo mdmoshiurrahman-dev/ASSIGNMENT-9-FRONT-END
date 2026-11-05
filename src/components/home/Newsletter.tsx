@@ -18,7 +18,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="relative w-full pb-10 sm:pb-14 bg-[#f7f6f0] overflow-hidden">
+    <section className="relative w-full pb-10 sm:pb-14 bg-[#f7f6f0] dark:bg-[#101812] overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Banner Capsule Container */}
         <div className="relative rounded-[28px] sm:rounded-full bg-[#0b3829] text-white px-6 sm:px-10 lg:px-12 py-5 sm:py-6 shadow-[0_12px_40px_-12px_rgba(11,56,41,0.35)] flex flex-col lg:flex-row items-center justify-between gap-6 overflow-visible">

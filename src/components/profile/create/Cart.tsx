@@ -22,7 +22,7 @@ const Cart = ({ event }: { event: Event }) => {
   return (
     <div
       key={event._id}
-      className="group relative bg-white rounded-3xl p-3.5 sm:p-4 border border-zinc-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+      className="group dark:bg-[#1B271E] relative bg-white rounded-3xl p-3.5 sm:p-4 border border-zinc-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
     >
       <div>
         <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-zinc-100">
@@ -36,7 +36,7 @@ const Cart = ({ event }: { event: Event }) => {
         </div>
         <h3
           title={event.event_title}
-          className="text-base sm:text-[17px] font-bold text-zinc-900 mt-3.5 tracking-tight truncate"
+          className="text-base sm:text-[17px] dark:text-[#F3F5EF] font-bold text-zinc-900 mt-3.5 tracking-tight truncate"
         >
           {event.event_title}
         </h3>
@@ -48,12 +48,12 @@ const Cart = ({ event }: { event: Event }) => {
         </div>
 
         {/* Date & Time */}
-        <div className="flex items-center gap-2 text-xs font-medium text-zinc-700 mt-3">
-          <Clock className="w-3.5 h-3.5 text-zinc-900 shrink-0" />
+        <div className="flex items-center dark:text-[#B5C0B5] gap-2 text-xs font-medium text-zinc-700 mt-3">
+          <Clock className="w-3.5 h-3.5 text-zinc-900 shrink-0 dark:text-white" />
           <span className="truncate">{eventDate}</span>
         </div>
-        <div className="flex items-center gap-2 text-xs font-medium text-zinc-700 mt-1.5">
-          <MapPin className="w-3.5 h-3.5 text-zinc-900 shrink-0" />
+        <div className="flex items-center dark:text-[#B5C0B5] gap-2 text-xs font-medium text-zinc-700 mt-1.5">
+          <MapPin className="w-3.5 h-3.5 text-zinc-900 shrink-0 dark:text-white" />
           <span className="truncate">{event.location}</span>
         </div>
         <div className="flex items-center justify-between gap-2 pt-3 mt-3 border-t border-zinc-100">
@@ -84,11 +84,11 @@ const Cart = ({ event }: { event: Event }) => {
             render={
               <Button
                 variant="outline"
-                className="py-2.5 px-3 border border-zinc-200/90 hover:bg-zinc-50 text-zinc-700 rounded-xl flex items-center justify-center transition-colors cursor-pointer active:scale-95"
+                className="py-2.5 px-3 border border-zinc-200/90 dark:border-[#F3F5EF] hover:bg-zinc-50 text-zinc-700 rounded-xl flex items-center justify-center transition-colors cursor-pointer active:scale-95"
               />
             }
           >
-            <MoreHorizontal className="w-4 h-4 text-zinc-700" />
+            <MoreHorizontal className="w-4 h-4 text-zinc-700 dark:text-[#F3F5EF]" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuGroup>

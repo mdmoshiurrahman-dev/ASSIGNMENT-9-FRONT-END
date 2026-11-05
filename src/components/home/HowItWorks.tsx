@@ -47,7 +47,7 @@ const steps: StepItem[] = [
 
 export default function HowItWorks() {
   return (
-    <section className="relative w-full py-14 sm:py-20 bg-[#f7f6f0] border-t border-zinc-200/50 overflow-hidden">
+    <section className="relative w-full py-14 sm:py-20 bg-[#f7f6f0] dark:bg-[#101812] border-t border-zinc-200/50 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Heading and Tag */}
@@ -60,13 +60,13 @@ export default function HowItWorks() {
             </div>
 
             {/* Main Headline */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-zinc-900 tracking-tight leading-[1.15]">
+            <h2 className="text-3xl dark:text-[#F3F5EF] sm:text-4xl lg:text-[44px] font-extrabold text-zinc-900 tracking-tight leading-[1.15]">
               Get Involved <br />
               in 3 Simple Steps
             </h2>
 
             {/* Subtitle with small leaf flourish */}
-            <p className="relative text-zinc-600 text-sm sm:text-base leading-relaxed max-w-sm">
+            <p className="relative text-zinc-600 text-sm dark:text-[#B5C0B5] sm:text-base leading-relaxed max-w-sm">
               Together, we can make a difference in our community.
               {/* Sprout / leaf doodle */}
               <Leaf className="inline text-green-500 size-5 ml-1" />
@@ -94,12 +94,12 @@ export default function HowItWorks() {
                     </div>
 
                     {/* Step Title */}
-                    <h3 className="text-lg sm:text-[19px] font-bold text-zinc-900 tracking-tight mb-2 group-hover:text-emerald-900 transition-colors">
+                    <h3 className="text-lg dark:text-[#F3F5EF]  sm:text-[19px] font-bold text-zinc-900 tracking-tight mb-2 group-hover:text-emerald-900 dark:group-hover:text-[#6ee1b5] transition-colors">
                       {step.title}
                     </h3>
 
                     {/* Step Description */}
-                    <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
+                    <p className="text-zinc-600 dark:text-[#B5C0B5] text-xs sm:text-sm leading-relaxed">
                       {step.description}
                     </p>
                   </div>

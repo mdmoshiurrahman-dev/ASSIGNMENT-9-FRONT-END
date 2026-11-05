@@ -50,7 +50,7 @@ async function ProfileContent() {
 
 export default function ProfilePage() {
   return (
-    <div className="min-h-screen bg-[#fcfbf9]/60">
+    <div className="min-h-screen dark:bg-[#101812] transition duration-300 bg-[#fcfbf9]/60">
       <Suspense fallback={<ProfileSkeleton />}>
         <ProfileContent />
       </Suspense>
