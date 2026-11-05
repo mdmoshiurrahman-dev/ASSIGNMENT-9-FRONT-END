@@ -15,7 +15,7 @@ const EventMainDetails = async ({ event }: { event: Event }) => {
   });
   const token = await getJwtTokenFromServer();
   const res = await fetch(
-    `http://localhost:5000/get-join-event/${session?.user.email}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/get-join-event/${session?.user.email}`,
     {
       headers: {
         authorization: `Bearer ${token}`,

@@ -17,7 +17,7 @@ const Delete = ({ event }: { event: Event }) => {
   const route = useRouter();
   const handelDelete = async () => {
     const token = await getJwtTokenFromClient();
-    const res = await fetch(`http://localhost:5000/delete/${event._id}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/delete/${event._id}`,{
       headers:{
         authorization:`Bearer ${token}`
       }

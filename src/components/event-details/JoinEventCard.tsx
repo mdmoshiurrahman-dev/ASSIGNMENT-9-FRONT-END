@@ -19,7 +19,7 @@ export const JoinEventCard = ({ data }: { data: EventJoinNeeds }) => {
   console.log(joinEventDetails);
   const handleJoin = async () => {
     setButton(!button);
-    const res = await fetch(`http://localhost:5000/join-event`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/join-event`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

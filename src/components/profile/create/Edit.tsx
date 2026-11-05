@@ -56,7 +56,7 @@ const Edit = ({ event }: { event: Event }) => {
     };
     const token  = await getJwtTokenFromClient();
     const finalData = { ...data, _id: event._id };
-    const res = await fetch(`http://localhost:5000/update`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/update`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
