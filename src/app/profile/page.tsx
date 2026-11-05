@@ -7,21 +7,31 @@ import ProfileSkeleton from "@/components/profile/skeleton/ProfileSkeleton";
 import { IEventRes } from "@/types/event";
 import JoinedEvents from "../../components/profile/join/JoinedEvents";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getJwtTokenFromServer } from "@/lib/getJwtTokenFromServer";
 async function ProfileContent() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-
+  const token = await getJwtTokenFromServer();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(
     `${apiUrl}/get-created-events/${session?.user.email}`,
-    { cache: "no-store" },
+    {
+      cache: "no-store",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
   );
 
   const createdEventData: IEventRes = await res.json();
 
   const joinedDataRes = await fetch(
-    `${apiUrl}/get-joined-event/${session?.user.email}`,
+    `${apiUrl}/get-joined-event/${session?.user.email}`,{
+      headers:{
+        authorization:`Bearer ${token}`
+      }
+    }
   );
   const joinedData: IEventRes = await joinedDataRes?.json();
 

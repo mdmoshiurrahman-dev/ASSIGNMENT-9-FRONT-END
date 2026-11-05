@@ -7,13 +7,20 @@ import { IoPerson } from "react-icons/io5";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { EventJoin, EventJoinNeeds } from "@/types/EventJoinRes";
+import { getJwtTokenFromServer } from "@/lib/getJwtTokenFromServer";
 
 const EventMainDetails = async ({ event }: { event: Event }) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+  const token = await getJwtTokenFromServer();
   const res = await fetch(
     `http://localhost:5000/get-join-event/${session?.user.email}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
   );
   const joinUserData: EventJoin = await res.json();
 

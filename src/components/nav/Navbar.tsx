@@ -25,9 +25,47 @@ const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Upcoming Events", href: "/events" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Profile", href: "/profile" },
 ];
-
+const logo = () => {
+  return (
+    <svg
+      viewBox="0 0 40 40"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-10 h-10 drop-shadow-sm"
+    >
+      {/* Heart Base with vibrant gradient */}
+      <path
+        d="M20 35.5C20 35.5 5 25.5 5 14.5C5 8.7 9.5 4.5 15 4.5C18.2 4.5 20 6.5 20 6.5C20 6.5 21.8 4.5 25 4.5C30.5 4.5 35 8.7 35 14.5C35 25.5 20 35.5 20 35.5Z"
+        fill="url(#heart-gradient)"
+      />
+      {/* Inner leaf / ribbon fold */}
+      <path
+        d="M20 7C20 7 22.5 5 25.5 5C30.5 5 34.5 9 34.5 14.5C34.5 24 22 32.5 20 34C21.8 28.5 24.5 20.5 22.5 15C21 11 19.5 8.5 20 7Z"
+        fill="#15803D"
+        opacity="0.3"
+      />
+      <path
+        d="M14.5 12.5C12.5 14.5 12.5 17.5 14 20L20 26L23 21C24.5 18.5 24.5 15.5 22.5 13.5C21 12 19 12.8 18.5 13.5C18 14.2 17 14.2 16.5 13.5C16 12.8 14 12 14.5 12.5Z"
+        fill="#ECFDF5"
+        opacity="0.95"
+      />
+      <defs>
+        <linearGradient
+          id="heart-gradient"
+          x1="5"
+          y1="4.5"
+          x2="35"
+          y2="35.5"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#22C55E" />
+          <stop offset="1" stopColor="#15803D" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
 export default function Navbar() {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -57,42 +95,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="relative flex items-center justify-center w-10 h-10 transition-transform group-hover:scale-105">
-              <svg
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-10 h-10 drop-shadow-sm"
-              >
-                {/* Heart Base with vibrant gradient */}
-                <path
-                  d="M20 35.5C20 35.5 5 25.5 5 14.5C5 8.7 9.5 4.5 15 4.5C18.2 4.5 20 6.5 20 6.5C20 6.5 21.8 4.5 25 4.5C30.5 4.5 35 8.7 35 14.5C35 25.5 20 35.5 20 35.5Z"
-                  fill="url(#heart-gradient)"
-                />
-                {/* Inner leaf / ribbon fold */}
-                <path
-                  d="M20 7C20 7 22.5 5 25.5 5C30.5 5 34.5 9 34.5 14.5C34.5 24 22 32.5 20 34C21.8 28.5 24.5 20.5 22.5 15C21 11 19.5 8.5 20 7Z"
-                  fill="#15803D"
-                  opacity="0.3"
-                />
-                <path
-                  d="M14.5 12.5C12.5 14.5 12.5 17.5 14 20L20 26L23 21C24.5 18.5 24.5 15.5 22.5 13.5C21 12 19 12.8 18.5 13.5C18 14.2 17 14.2 16.5 13.5C16 12.8 14 12 14.5 12.5Z"
-                  fill="#ECFDF5"
-                  opacity="0.95"
-                />
-                <defs>
-                  <linearGradient
-                    id="heart-gradient"
-                    x1="5"
-                    y1="4.5"
-                    x2="35"
-                    y2="35.5"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stopColor="#22C55E" />
-                    <stop offset="1" stopColor="#15803D" />
-                  </linearGradient>
-                </defs>
-              </svg>
+              {logo()}
             </div>
             <span className="text-2xl dark:text-[#F3F5EF] font-bold tracking-tight text-zinc-900 flex items-center">
               Social
@@ -114,6 +117,18 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+            {session.data?.user && (
+              <Link
+                href={"/profile"}
+                className={`text-sm dark:text-[#F3F5EF] font-medium transition-all px-4 py-1.5 rounded-full ${
+                  pathName === "/profile"
+                    ? "bg-[#dff3e3] text-zinc-900 dark:text-black font-semibold shadow-xs"
+                    : "text-zinc-700 hover:text-zinc-950 hover:bg-black/5"
+                }`}
+              >
+                Profile
+              </Link>
+            )}
           </nav>
           <div className="hidden sm:flex items-center gap-3 lg:gap-4">
             <ThemeToggle />
@@ -126,25 +141,29 @@ export default function Navbar() {
                   className="flex cursor-pointer items-center gap-1.5 p-1 rounded-full hover:bg-black/5 transition-colors"
                   aria-label="User Account"
                 >
-                  <div className="relative flex justify-center items-center w-8 h-8 rounded-full overflow-hidden border-2 border-emerald-500/30 shadow-xs bg-emerald-100">
-                    {session.data?.user.image ? (
-                      <Image
-                        src={session.data?.user.image}
-                        alt="User Avatar"
-                        width={32}
-                        height={32}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <IoPerson className="size-8" />
-                    )}
-                  </div>
+                  {session.data && (
+                    <div className="relative flex justify-center items-center w-8 h-8 rounded-full overflow-hidden border-2 border-emerald-500/30 shadow-xs bg-emerald-100">
+                      {session.data?.user.image ? (
+                        <Image
+                          src={session.data?.user.image}
+                          alt="User Avatar"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <IoPerson className="size-8" />
+                      )}
+                    </div>
+                  )}
                 </button>
               </HoverCardTrigger>
               <HoverCardContent>
                 <div className="flex flex-col gap-2">
                   <div>
-                    <h2 className="font-bold">{session.data?.user.name}</h2>
+                    <h2 className="font-bold text-[16px]">
+                      {session.data?.user.name}
+                    </h2>
                     <p className="text-[14px]">{session.data?.user.email}</p>
                   </div>
                   <div className="flex gap-2">

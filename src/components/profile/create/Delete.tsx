@@ -12,10 +12,16 @@ import { Event } from "@/types/event";
 import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/toast";
 import { Button } from "@/components/ui/button";
+import { getJwtTokenFromClient } from "@/lib/getJwtTokenFromClient";
 const Delete = ({ event }: { event: Event }) => {
   const route = useRouter();
   const handelDelete = async () => {
-    const res = await fetch(`http://localhost:5000/delete/${event._id}`);
+    const token = await getJwtTokenFromClient();
+    const res = await fetch(`http://localhost:5000/delete/${event._id}`,{
+      headers:{
+        authorization:`Bearer ${token}`
+      }
+    });
     const result = await res.json();
     if (result.deletedCount > 0) {
       route.refresh();

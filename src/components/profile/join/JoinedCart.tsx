@@ -1,5 +1,6 @@
 import { toast } from "@/components/ui/toast";
 import { useSession } from "@/lib/auth-client";
+import { getJwtTokenFromClient } from "@/lib/getJwtTokenFromClient";
 import { Event } from "@/types/event";
 import { Clock, MapPin, Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -18,10 +19,14 @@ const JoinedCart = ({ event }: { event: Event }) => {
   const session = useSession();
 
   const deleteJoin = async () => {
+    const token = await getJwtTokenFromClient();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/delete-joined-event/${session.data?.user.email}/${event._id}`,
       {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       },
     );
 
@@ -95,13 +100,12 @@ const JoinedCart = ({ event }: { event: Event }) => {
                 Organizer by
               </span>
               <span className="text-[10px] dark:text-[#B5C0B5] text-zinc-500 leading-tight block truncate max-w-[85px] sm:max-w-[100px]">
-                {event.creator_name }
+                {event.creator_name}
               </span>
             </div>
           </div>
         </div>
       </div>
-
 
       <div className="mt-4 space-y-2">
         <Link

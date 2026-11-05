@@ -6,7 +6,6 @@ import JoinedCart from "./JoinedCart";
 export default function JoinedEvents({ events }: { events: IEventRes }) {
   return (
     <section className="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-      {/* Header section matching UI screenshot */}
       <div className="mb-6 sm:mb-8">
         <p className="text-sm dark:text-[#B5C0B5] sm:text-base font-semibold text-zinc-600 mb-1">
           Joined Events Section

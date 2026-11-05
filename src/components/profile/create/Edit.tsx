@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -18,6 +19,9 @@ import {
   Tag,
 } from "lucide-react";
 import { Event } from "@/types/event";
+import { toast } from "@/components/ui/toast";
+import { useRouter } from "next/navigation";
+import { getJwtTokenFromClient } from "@/lib/getJwtTokenFromClient";
 const categories = [
   "Plantation",
   "Donation",
@@ -37,6 +41,7 @@ const categories = [
   "Other",
 ];
 const Edit = ({ event }: { event: Event }) => {
+  const router = useRouter();
   const handelEventEdit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fromData = new FormData(e.currentTarget);
@@ -49,22 +54,36 @@ const Edit = ({ event }: { event: Event }) => {
       event_cover_image?: string;
       event_description: string;
     };
+    const token  = await getJwtTokenFromClient();
     const finalData = { ...data, _id: event._id };
     const res = await fetch(`http://localhost:5000/update`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization:`Bearer ${token}`
       },
       body: JSON.stringify(finalData),
     });
     const result = await res.json();
-    console.log(result);
+    if (result.modifiedCount) {
+      toast.add({
+        type: "success",
+        description: "Event update successfully!",
+      });
+      router.refresh()
+    } else {
+      toast.add({
+        type: "error",
+        description: "Something is wrong!",
+      });
+    }
   };
   return (
     <div>
       <Dialog>
         <DialogTrigger className="w-full text-left flex items-center dark:text-[#F3F5EF] gap-2.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-[#1f4e30] hover:bg-[#dcf0d6] dark:hover:bg-black transition-colors cursor-pointer">
-          <Pencil className="w-3.5 h-3.5 text-[#2d6a4f] dark:text-[#F3F5EF] shrink-0" /> Edit Event
+          <Pencil className="w-3.5 h-3.5 text-[#2d6a4f] dark:text-[#F3F5EF] shrink-0" />{" "}
+          Edit Event
         </DialogTrigger>
         <DialogContent className="max-w-lg sm:max-w-2xl max-h-[85vh] p-0 flex flex-col overflow-hidden">
           <DialogHeader className="p-6 pb-2">
@@ -79,7 +98,11 @@ const Edit = ({ event }: { event: Event }) => {
           </DialogHeader>
 
           <div className="flex-1 overflow-y-auto px-6 pb-6 pr-4 space-y-6">
-            <form className="space-y-6" onSubmit={handelEventEdit}>
+            <form
+              className="space-y-6"
+              onSubmit={handelEventEdit}
+              onKeyDown={(e) => e.stopPropagation()}
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                 {/* Event Title */}
                 <div className="md:col-span-2 space-y-1.5">
@@ -206,6 +229,7 @@ const Edit = ({ event }: { event: Event }) => {
                   <div className="relative">
                     <ImageIcon className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
+                     required
                       defaultValue={event.event_cover_image}
                       type="url"
                       id="imageUrl"
@@ -237,12 +261,16 @@ const Edit = ({ event }: { event: Event }) => {
                 </div>
               </div>
               <div className="flex justify-end pt-4">
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-semibold hover:bg-emerald-700 transition-colors"
-                >
-                  Save Changes
-                </button>
+                <DialogClose
+                  render={
+                    <button
+                      type="submit"
+                      className="px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-semibold hover:bg-emerald-700 transition-colors"
+                    >
+                      Save Changes
+                    </button>
+                  }
+                />
               </div>
             </form>
           </div>

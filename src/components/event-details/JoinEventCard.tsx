@@ -6,8 +6,10 @@ import { toast } from "../ui/toast";
 import { EventJoinNeeds } from "@/types/EventJoinRes";
 import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const JoinEventCard = ({ data }: { data: EventJoinNeeds }) => {
+  const router = useRouter();
   const [button, setButton] = useState(false);
   const session = useSession();
   const joinEventDetails = {
@@ -41,7 +43,7 @@ export const JoinEventCard = ({ data }: { data: EventJoinNeeds }) => {
 
   return (
     <button
-      onClick={handleJoin}
+      onClick={() => (session.data?.user ? handleJoin() : router.push("/signin"))}
       className="px-4 py-2 flex justify-center items-center cursor-pointer lg:px-6 lg:py-3.5 text-[14px] lg:text-[14px] rounded-xl bg-green-600 mt-2 text-white"
     >
       {isExits ? (

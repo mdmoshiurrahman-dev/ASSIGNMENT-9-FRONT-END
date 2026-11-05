@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import { toast } from "../ui/toast";
 import { Spinner } from "../ui/spinner";
 import { useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { getJwtTokenFromClient } from "@/lib/getJwtTokenFromClient";
 const categories = [
   "Plantation",
   "Donation",
@@ -23,8 +25,17 @@ const categories = [
   "Healthcare",
   "Animal Welfare",
   "Community Service",
+  "Disaster Relief",
+  "Homeless Support",
+  "Elderly Care",
+  "Mental Health Support",
+  "Blood Donation",
+  "Mentorship",
+  "Childcare Support",
+  "Other",
 ];
 const CreateEventFrom = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const session = useSession();
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,7 +47,7 @@ const CreateEventFrom = () => {
       creator_email: session.data?.user.email,
       creator_image: session.data?.user.image,
     };
-
+    const token = await getJwtTokenFromClient();
     setLoading(true);
     const fromData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(fromData.entries());
@@ -45,6 +56,7 @@ const CreateEventFrom = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(finalData),
     });
@@ -54,6 +66,7 @@ const CreateEventFrom = () => {
         type: "success",
         description: "Event has been created.",
       });
+      router.push("/events");
     }
   };
   return (
@@ -193,6 +206,7 @@ const CreateEventFrom = () => {
               <div className="relative">
                 <ImageIcon className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
+                  required
                   type="url"
                   id="imageUrl"
                   name="event_cover_image"
