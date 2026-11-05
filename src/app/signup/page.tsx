@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { FaGoogle } from "react-icons/fa";
+import GoogleAuth from "../signin/google/GoogleAuth";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -96,9 +97,7 @@ export default function SignupPage() {
           </FieldGroup>
         </form>
         <div className="border-t border-gray-400 pt-5 mt-5">
-          <button className="w-full bg-[#189346] cursor-pointer rounded-xl text-white p-3">
-            <FaGoogle className="inline" /> Google
-          </button>
+          <GoogleAuth />
         </div>
         <p className="text-[13px] text-center text-[#189346] mt-3">
           <Link href={"/signin"}> </Link>

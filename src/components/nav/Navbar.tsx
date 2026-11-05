@@ -147,9 +147,12 @@ export default function Navbar() {
                     <h2 className="font-bold">{session.data?.user.name}</h2>
                     <p className="text-[14px]">{session.data?.user.email}</p>
                   </div>
-                  <div className="flex justify-end">
+                  <div className="flex gap-2">
+                    <Link href={"/create-event"}>
+                      <Button>Create Event</Button>
+                    </Link>
                     <Link href={"/profile"}>
-                      <Button className={"cursor-pointer"}>View profile</Button>
+                      <Button>Manage Events</Button>
                     </Link>
                   </div>
                 </div>
