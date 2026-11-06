@@ -1,3 +1,4 @@
+import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
 import { useSession } from "@/lib/auth-client";
 import { getJwtTokenFromClient } from "@/lib/getJwtTokenFromClient";
@@ -6,10 +7,11 @@ import { Clock, MapPin, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { IoPerson } from "react-icons/io5";
 
 const JoinedCart = ({ event }: { event: Event }) => {
+  const [loading, setIsLoading] = useState(false);
   const route = useRouter();
   const eventDate = new Date(event.event_date).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -20,6 +22,7 @@ const JoinedCart = ({ event }: { event: Event }) => {
 
   const deleteJoin = async () => {
     const token = await getJwtTokenFromClient();
+    setIsLoading(true);
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/delete-joined-event/${session.data?.user.email}/${event._id}`,
       {
@@ -32,11 +35,14 @@ const JoinedCart = ({ event }: { event: Event }) => {
 
     const result = await res.json();
     if (result.modifiedCount > 0) {
+      setIsLoading(false);
       toast.add({
         type: "success",
         description: "Removed Successfully!",
       });
       route.refresh();
+    } else {
+      setIsLoading(false);
     }
   };
 
@@ -120,8 +126,17 @@ const JoinedCart = ({ event }: { event: Event }) => {
           type="button"
           className="w-full py-2 px-4 dark:bg-[#212020] dark:border-white bg-[#fdf2f2] hover:bg-[#fee2e2] text-[#dc2626] border border-[#fecaca]/70 text-xs sm:text-sm font-semibold rounded-xl flex items-center justify-center gap-1.5 transition-colors active:scale-[0.99] cursor-pointer disabled:opacity-60"
         >
-          <span>Remove from Joined</span>
-          <Trash2 className="w-3.5 h-3.5 text-[#dc2626] shrink-0" />
+          {loading ? (
+            <span>
+              {" "}
+              <Spinner className="inline ml-1" /> Removing from Joined...
+            </span>
+          ) : (
+            <>
+              <span> Remove from Joined</span>
+              <Trash2 className="w-3.5 h-3.5 text-[#dc2626] shrink-0" />
+            </>
+          )}
         </button>
       </div>
     </div>
