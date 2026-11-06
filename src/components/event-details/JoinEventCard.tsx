@@ -7,6 +7,7 @@ import { EventJoinNeeds } from "@/types/EventJoinRes";
 import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { getJwtTokenFromClient } from "@/lib/getJwtTokenFromClient";
 
 export const JoinEventCard = ({ data }: { data: EventJoinNeeds }) => {
   const router = useRouter();
@@ -19,10 +20,12 @@ export const JoinEventCard = ({ data }: { data: EventJoinNeeds }) => {
     participant_email: session.data?.user.email,
   };
   const handleJoin = async () => {
+    const token = await getJwtTokenFromClient();
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/join-event`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(joinEventDetails),
     });
@@ -34,7 +37,7 @@ export const JoinEventCard = ({ data }: { data: EventJoinNeeds }) => {
         description: "Successfully joined the event!",
       });
     } else {
-       setIsJoined((prev) => !prev);
+      setIsJoined((prev) => !prev);
       toast.add({
         type: "error",
         description: "You have left this event!",
