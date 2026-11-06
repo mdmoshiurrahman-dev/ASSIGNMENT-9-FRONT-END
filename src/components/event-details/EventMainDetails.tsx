@@ -6,37 +6,25 @@ import { Event } from "@/types/event";
 import { IoPerson } from "react-icons/io5";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { EventJoin, EventJoinNeeds } from "@/types/EventJoinRes";
+import { EventJoinNeeds } from "@/types/EventJoinRes";
 import { getJwtTokenFromServer } from "@/lib/getJwtTokenFromServer";
 
 const EventMainDetails = async ({ event }: { event: Event }) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  let joinUserData: EventJoin = { events: [], participant_email: "", _id: "" };
-  if (session?.user?.email) {
-    try {
-      const token = await getJwtTokenFromServer();
-      if (token) {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/get-join-event/${session.user.email}`,
-          {
-            headers: {
-              authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        if (res.ok) {
-          joinUserData = await res.json();
-        }
-      }
-    } catch (err) {
-      console.warn("Failed to fetch join info:", err);
-    }
-  }
+  const token = await getJwtTokenFromServer();
 
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/get-join-event/${session?.user.email}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  const joinUserData: EventJoinNeeds = await res.json();
   const data: EventJoinNeeds = { ...joinUserData, event_id: event._id };
-
   return (
     <div className="w-full  space-y-6">
       {/* Event Cover Image with Category Badge */}

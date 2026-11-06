@@ -17,7 +17,6 @@ const page = async ({ params }: PageProps) => {
     console.log("fetch failed");
   }
   const event: Event = await res.json();
-  console.log(event)
   const eventCategory = { category: event.category, _id: event._id };
   return (
     <div className="min-h-screen dark:bg-[#101812] transition duration-300 bg-[#fafafa]/80 py-8 sm:py-12">
