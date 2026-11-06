@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -17,11 +18,14 @@ const Delete = ({ event }: { event: Event }) => {
   const route = useRouter();
   const handelDelete = async () => {
     const token = await getJwtTokenFromClient();
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/delete/${event._id}`,{
-      headers:{
-        authorization:`Bearer ${token}`
-      }
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/delete/${event._id}`,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      },
+    );
     const result = await res.json();
     if (result.deletedCount > 0) {
       route.refresh();
@@ -46,9 +50,13 @@ const Delete = ({ event }: { event: Event }) => {
             and our database!
           </DialogDescription>
         </DialogHeader>
-        <Button onClick={handelDelete} className={"bg-red-500 "}>
-          Delete
-        </Button>
+        <DialogClose
+          render={
+            <Button onClick={handelDelete} className={"bg-red-500 "}>
+              Delete
+            </Button>
+          }
+        />
       </DialogContent>
     </Dialog>
   );
