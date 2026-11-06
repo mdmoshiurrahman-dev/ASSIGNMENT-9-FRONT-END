@@ -13,13 +13,12 @@ const EventMainDetails = async ({ event }: { event: Event }) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  const token = await getJwtTokenFromServer();
   const res = session?.user
     ? await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/get-join-event/${session.user.email}`,
         {
           headers: {
-            authorization: `Bearer ${token}`,
+            authorization: `Bearer ${await getJwtTokenFromServer()}`,
           },
         },
       )
