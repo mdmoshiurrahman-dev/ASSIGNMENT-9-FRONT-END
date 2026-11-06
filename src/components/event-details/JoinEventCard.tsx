@@ -35,6 +35,7 @@ export const JoinEventCard = ({ data }: { data: EventJoinNeeds }) => {
         description: "Successfully joined the event!",
       });
     } else {
+       setIsJoined((prev) => !prev);
       toast.add({
         type: "error",
         description: "You have left this event!",
