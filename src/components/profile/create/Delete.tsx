@@ -57,7 +57,7 @@ const Delete = ({ event }: { event: Event }) => {
           {isLoading ? (
             <span>
               {" "}
-              <Spinner /> Deleting..{" "}
+              <Spinner className="inline ml-1" /> Deleting..{" "}
             </span>
           ) : (
             "Delete"
