@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -14,9 +13,12 @@ import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/toast";
 import { Button } from "@/components/ui/button";
 import { getJwtTokenFromClient } from "@/lib/getJwtTokenFromClient";
+import { Spinner } from "@/components/ui/spinner";
 const Delete = ({ event }: { event: Event }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const route = useRouter();
   const handelDelete = async () => {
+    setIsLoading(true);
     const token = await getJwtTokenFromClient();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/delete/${event._id}`,
@@ -29,6 +31,7 @@ const Delete = ({ event }: { event: Event }) => {
     const result = await res.json();
     if (result.deletedCount > 0) {
       route.refresh();
+      setIsLoading(false);
       toast.add({
         type: "success",
         description: "Event delete successfully!",
@@ -50,13 +53,16 @@ const Delete = ({ event }: { event: Event }) => {
             and our database!
           </DialogDescription>
         </DialogHeader>
-        <DialogClose
-          render={
-            <Button onClick={handelDelete} className={"bg-red-500 "}>
-              Delete
-            </Button>
-          }
-        />
+        <Button onClick={handelDelete} className={"bg-red-500 "}>
+          {isLoading ? (
+            <span>
+              {" "}
+              <Spinner /> Deleting..{" "}
+            </span>
+          ) : (
+            "Delete"
+          )}
+        </Button>
       </DialogContent>
     </Dialog>
   );
