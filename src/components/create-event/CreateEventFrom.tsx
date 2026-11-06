@@ -39,7 +39,6 @@ const CreateEventFrom = () => {
   const [loading, setLoading] = useState(false);
   const session = useSession();
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log("clicked event create button");
     e.preventDefault();
     const event_create_date = new Date().toISOString();
     const otherData = {
@@ -48,14 +47,11 @@ const CreateEventFrom = () => {
       creator_email: session.data?.user.email,
       creator_image: session.data?.user.image,
     };
-    console.log(otherData);
     const token = await getJwtTokenFromClient();
-    console.log(token)
     setLoading(true);
     const fromData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(fromData.entries());
     const finalData = { ...data, ...otherData };
-    console.log("final data--> ", finalData);
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/create-event`, {
       method: "POST",
       headers: {
@@ -64,7 +60,6 @@ const CreateEventFrom = () => {
       },
       body: JSON.stringify(finalData),
     });
-    console.log(res);
     if (res) {
       setLoading(false);
       toast.add({

@@ -3,8 +3,10 @@ import Cart from "./Cart";
 import { Suspense } from "react";
 import GallerySkeleton from "./skelon/GallerySkeleton";
 
- async function GalleryGrid() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/gallery-image`);
+async function GalleryGrid() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/gallery-image`, {
+    next: { revalidate: 7 * 24 * 60 * 60 },
+  });
   const galleryImage: Gallery[] = await res.json();
   return (
     <section className="w-full  py-12 md:py-16 dark:bg-[#101812] bg-[#f9faf7]">
@@ -17,13 +19,11 @@ import GallerySkeleton from "./skelon/GallerySkeleton";
   );
 }
 
-
-const GalleryGridMain = ()=>{
- return (
-  <Suspense fallback = {<GallerySkeleton/>}>
-
-    <GalleryGrid/>
-  </Suspense>
- )
-}
-export default GalleryGridMain
+const GalleryGridMain = () => {
+  return (
+    <Suspense fallback={<GallerySkeleton />}>
+      <GalleryGrid />
+    </Suspense>
+  );
+};
+export default GalleryGridMain;

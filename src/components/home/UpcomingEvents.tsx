@@ -120,7 +120,12 @@ const illustrator = () => {
 };
 
 export default async function UpcomingEvents() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recent-upcoming-events`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/recent-upcoming-events`,
+    {
+      next: { revalidate: 12 * 60 * 60 }, //12 hours
+    },
+  );
   const events: IEvents = await res.json();
   return (
     <section className="relative w-full py-12 md:py-16 dark:bg-[#101812] bg-[#f7f6f0] overflow-hidden">

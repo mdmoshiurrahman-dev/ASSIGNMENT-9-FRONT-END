@@ -18,7 +18,6 @@ export const JoinEventCard = ({ data }: { data: EventJoinNeeds }) => {
     event_id: data.event_id,
     participant_email: session.data?.user.email,
   };
-  console.log(joinEventDetails);
   const handleJoin = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/join-event`, {
       method: "POST",

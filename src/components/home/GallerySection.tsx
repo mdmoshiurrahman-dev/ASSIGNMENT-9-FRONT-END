@@ -6,6 +6,9 @@ import { GalleryImageArray } from "@/types/galleryItems";
 export default async function GallerySection() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/old-gallery-image`,
+    {
+      next: { revalidate: 7 * 24 * 60 * 60 }, // 7 days
+    },
   );
   const galleryItems: GalleryImageArray = await res.json();
   return (

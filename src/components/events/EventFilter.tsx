@@ -12,12 +12,12 @@ export interface FilterCategory {
 async function EventFilter() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/all-events`);
   const eventData: IEventRes = await res.json();
-  return <DisplayEvents eventData = {eventData} />
+  return <DisplayEvents eventData={eventData} />;
 }
 
 const EventFilterMain = () => {
   return (
-    <Suspense fallback={<EventGridSkeleton/>}>
+    <Suspense fallback={<EventGridSkeleton />}>
       <EventFilter />;
     </Suspense>
   );
