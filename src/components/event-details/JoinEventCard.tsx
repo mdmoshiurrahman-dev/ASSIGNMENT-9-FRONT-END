@@ -29,7 +29,7 @@ export const JoinEventCard = ({ data }: { data: EventJoinNeeds }) => {
     });
     const result = await res.json();
     if (result.status) {
-      setIsJoined(!isJoined);
+      setIsJoined((prev) => !prev);
       toast.add({
         type: "success",
         description: "Successfully joined the event!",
