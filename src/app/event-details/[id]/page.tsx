@@ -10,9 +10,7 @@ interface PageProps {
 
 const page = async ({ params }: PageProps) => {
   const { id } = await params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event/${id}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event/${id}`,);
   if (!res.ok) {
     console.log("fetch failed");
   }

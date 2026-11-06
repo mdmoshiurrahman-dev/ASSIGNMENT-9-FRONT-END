@@ -14,16 +14,19 @@ const EventMainDetails = async ({ event }: { event: Event }) => {
     headers: await headers(),
   });
   const token = await getJwtTokenFromServer();
+  const res = session?.user
+    ? await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/get-join-event/${session.user.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        },
+      )
+    : null;
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/get-join-event/${session?.user.email}`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    },
-  );
-  const joinUserData: EventJoinNeeds = await res.json();
+  const joinUserData = res ? await res.json() : {};
+
   const data: EventJoinNeeds = { ...joinUserData, event_id: event._id };
   return (
     <div className="w-full  space-y-6">
